@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="/styles/main.css">
   </head>
-  <body>
+  <body data-ng-app="tripApp">
     <header class="nav">
 
       <section>
@@ -28,19 +28,22 @@
       </section>
     </header>
 
-    <main>
+    <main data-ng-controller="tripController" data-ng-init="getAll()">
       <section>
         <h2>My Trips</h2>
         <p>A List of Trips</p>
-
-        <h3>Trip Example</h3>
-        <p>Origin</p>
-        <p>Destination</p>
-        <p>Time</p>
-        <p>Days</p>
-        <p>CarPoolBuddies</p>
-        <p>Name</p>
-        <p>Email (click to see)</p>
+      <ul data-ng-repeat="trip in trips">
+        <li> {{trip.tripName}}
+          <h3>Trip Example</h3>
+          <p>Origin{{trip.origin}}</p>
+          <p>Destination{{trip.dest}}</p>
+          <p>Time{{trip.destTime}}</p>
+          <p>Days{{trip.weekDays}}</p>
+          <p>CarPoolBuddies{trip.travelers}</p>
+          <p>Name</p>
+          <p>Email (click to see)</p>
+        </li>
+      </ul>
       </section>
 
       <section>
@@ -55,6 +58,11 @@
       <section>
         <h2>Create A Trip</h2>
         <p>Form Goes Here Inputs are</p>
+  <div data-trip-form save="createTrip(trip)"
+       data-trip="newTrip"
+       data-label-text="Trips!"
+       data-button-text="Create New Trip">
+    </div>
         <p>Origin</p>
         <p>Destination</p>
         <p>Time</p>
@@ -62,7 +70,7 @@
       </section>
 
       <section>
-        <h2>Delete a Trip</h2>
+        <h2 data-ng-click="removeTrip(trip)">Delete a Trip</h2>
         <p>Form Goes Here Inputs are</p>
         <p>Name of Trip</p>
       </section>
