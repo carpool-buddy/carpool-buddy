@@ -1,8 +1,8 @@
 # carpool-buddy
 
-## Enviromental Variables
+## Environmental Variables
 
-The following enviromental variables are suggested for your machine
+The following environmental variables are suggested for your machine
 
 GOOGLE_MAPS_API_KEY
 APP_SECRET
