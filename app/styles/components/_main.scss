@@ -11,6 +11,7 @@
   @extend .expand_delete;
   margin-right: 0;
   margin-bottom: 5px;
+  background-color: $logo-color;
 }
 
 
@@ -45,10 +46,31 @@
 //     border-bottom: 1px solid black;
 //   }
 // }
-
-.trip_detail_expand {
-  @extend .expand_delete;
-  margin-right: 0;
+.hide {
+  display: none;
+}
+.rotate {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
 }
 
-
+.content{
+  @include flex-container(flex,row,nowrap,center,center,center);
+  h3{
+    padding-right: 30%;
+  }
+}
+@media only screen and (min-width: 650px) {
+  .main-content{
+  overflow: auto;
+  }
+  .main-filters{
+    position: fixed;
+    position: clearfix;
+  }
+  .main-trips{
+    @include flex-container(flex,column,nowrap,flex-start,center,center);
+  }
+}
