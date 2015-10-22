@@ -1,7 +1,6 @@
 # Mac Files
 .DS_Store
 
-<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -26,15 +25,14 @@ coverage
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
-# Dependency Directory
-node_modules
-db
+# Compiled files for testing
+**/test_bundle.js
 
-#Dependency Directory
+# Dependency Directory
 node_modules
 db
 public
 
-#Dev Environment
+# Dev Environment
 .env
 

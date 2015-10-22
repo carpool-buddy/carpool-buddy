@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="/styles/main.css">
   </head>
-  <body>
+  <body data-ng-app="carpoolApp">
 
     <header>
       <section class="nav">
@@ -31,23 +31,25 @@
         </div>
       </section>
     </header>
-    <main>
+    <main data-ng-controller="TripsController" data-ng-init="getMyTrips()">
 
       <section class="trip_info">
         <h2>My Trips</h2>
 
-        <h3>{{ trip. }}<span class="trip_detail_expand" id="trips-1" >+</span></h3>
-        <ul id="trips-details-1">
-          <li ng-repeat="trip in trips">
-            <p>{{ trip.origin }}</p>
-            <p>{{ trip.destination }}</p>
-            <p>{{ trip.time }}</p>
-            <p>{{ trip.days }}</p>
-            <p>{{ trip.users }}</p>
-            <p>{{ trip.users.email (click to see) }}</p>
-          </li>
-        </ul>
-
+        <section ng-repeat="trip in trips">
+          <h3>{{ trip.tripName }}<span class="trip_detail_expand" id="trips-1" >+</span></h3>
+          <ul id="trips-details-1">
+            <li>
+              <p>{{ trip.origin }}</p>
+              <p>{{ trip.dest }}</p>
+              <p>{{ trip.originTime }}</p>
+              <p>{{ trip.destTime}}</p>
+              <p>{{ trip.weekDays }}</p>
+              <p>{{ trip.travelers }}</p>
+              <p>{{ trip.seatsLeft (click to see) }}</p>
+            </li>
+          </ul>
+        </section>
 
       </section>
 
@@ -83,16 +85,19 @@
       <section>
         <h2>Create A Trip <span class="expand" id="create-trip-expand">+</span></h2>
 
-        <form id="create-trip-form" class="form hidden">
+        <form id="create-trip-form" class="form hidden" data-ng-submit="createTrip(newTrip)">
           <fieldset>
             <label for="create-origin">Where to Start?</label>
-            <input type="text" name="create-origin" id="create-origin" spellcheck="false" />
+            <input type="text" name="create-origin" id="create-origin" spellcheck="false" data-ng-model="newTrip.origin"/>
 
             <label for="create-destination">Where to Go?</label>
-            <input type="text" name="create-destination" id="create-destination" spellcheck="false" />
+            <input type="text" name="create-destination" id="create-destination" spellcheck="false" data-ng-model="newTrip.dest" />
 
             <label for="create-time">What Time to Go?</label>
-            <input type="time" name="create-time" id="create-time" spellcheck="false" />
+            <input type="time" name="create-time" id="create-time" spellcheck="false" data-ng-model="newTrip.originTime"/>
+
+            <label for="create-timeDest">What Time to Arrive?</label>
+            <input type="time" name="create-time" id="create-timeDest" spellcheck="false" data-ng-model="newTrip.destTime"/>
             <label for="create-days">What Days to Go?</label>
            <fieldset class="form-left">
             <label><input type="checkbox" value="sun"/>Sunday</label>
@@ -112,8 +117,8 @@
 
       <section class="trip_info">
         <h2>Delete a Trip</h2>
-        <ul ng-repeat="trip in trips">
-          <li>{{ trip.name }}<span class="delete" id="find-trip-expand" ng-click="vm.delete(vm.file.id)">-</span></li>
+        <ul data-ng-repeat="trip in trips">
+          <li>{{ trip.tripName }}<span class="delete" id="find-trip-expand" ng-click="vm.delete(vm.file.id)">-</span></li>
    <!--      <div class="home">
           <a href="#"><span>^</span></a>
         </div> -->

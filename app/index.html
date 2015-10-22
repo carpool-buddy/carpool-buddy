@@ -34,7 +34,7 @@
     </div> -->
 
     <div id="sign-up-form" data-ng-controller="SignupController">
-      <form name="userForm" data-ng-submit="sendToServer(user)">
+      <form name="userForm" data-ng-submit="sendToServer(user)" data-user="user">
         <fieldset>
           <a class="form-close" id="signup-form-close">X</a>
           <h2 class="logo">Car Pool Buddy</h2>
@@ -42,18 +42,18 @@
 
 
           <label for="form-email">Email</label>
-          <input type="email" name="email" id="form-email" spellcheck="false" data-ng-model="user.email"/>
+          <input type="email" name="email" id="form-email" spellcheck="false" data-ng-model="user.email" required/>
 
           <label for="form-password">Password</label>
-          <input type="password" name="password" id="login-password" spellcheck="false" data-ng-model="user.password"/>
+          <input type="password" name="password" id="login-password" spellcheck="false" data-ng-model="user.password" required match="user.confirmation"/>
 
 
-          <!--label data-ng-if="confirmPassword" for="form-password-confirm">Confirm Password</label>
+          <label data-ng-if="confirmPassword" for="form-password-confirm">Confirm Password</label>
+
+          <input type="password" name="password" id="login-password" spellcheck="false" data-ng-model="user.confirmation" required match="user.password"/>
           <p data-ng-if="!passwordMatch(user)">Passwords Do Not Match!</p>
 
-          <input type="password" name="password" id="login-password" spellcheck="false" data-ng-model="user.confirmation" /-->
-
-          <button type="submit">Submit</login>
+          <button type="submit" data-ng-disabled="disableButton(user)">Submit</login>
         </fieldset>
       </form>
     </div>

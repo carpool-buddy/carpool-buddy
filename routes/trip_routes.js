@@ -5,21 +5,21 @@ var jsonParser = require('body-parser').json();
 var handleError = require(__dirname + '/../lib/handle_error');
 var dateParser = require(__dirname + '/../lib/date_parser');
 var findDistance = require(__dirname + '/../app/js/find_distance');
+var eatAuth = require(__dirname + '/../lib/eat_auth');
 
 var tripsRoute = module.exports = exports = express.Router();
 
-tripsRoute.get('/trips/:userId', jsonParser, function(req, res) {
-  // If there is only a userId we are finding all the trips the user is a part of.
-  User.findOne({_id: req.params.userId}, function(err, user) {
+tripsRoute.get('/trips', jsonParser, eatAuth, function(req, res) {
+  // If there is only a userId we are finding all the trips the user is a part of.  
+  
+  Trip.find({travelers: req.user._id}, function(err, docs) {
+    
     if (err) handleError(err, res, 500);
-    Trip.find({travelers: user._id}, function(err, docs) {
-      if (err) handleError(err, res, 500);
-      res.json({trips: docs});
-    });
+    res.json({trips: docs});
   });
 });
 
-tripsRoute.get('/trips/:userId/:tripSearch', jsonParser, function(req, res) {
+tripsRoute.get('/trips/:tripSearch', jsonParser, eatAuth, function(req, res) {
   // if there is a tripSearch object on req.query, then we are finding trips
   // for the user to sign up to.
   if (req.params.tripSearch) {
@@ -56,13 +56,12 @@ tripsRoute.get('/trips/:userId/:tripSearch', jsonParser, function(req, res) {
         });
       });
     });
-    return;
-  }  
+  }
 });
 
-tripsRoute.post('/trips', jsonParser, function(req, res) {
+tripsRoute.post('/trips', jsonParser, eatAuth, function(req, res) {
   var tripInfo = req.body.trip;
-  User.findOne({email: req.body.trip.userEmail}, function(err, user) {
+  User.findOne({_id: req.user._id}, function(err, user) {
     var trip = new Trip();
     trip.tripName = tripInfo.tripName;
     trip.origin = tripInfo.origin;
@@ -79,9 +78,9 @@ tripsRoute.post('/trips', jsonParser, function(req, res) {
   });
 });
 
-tripsRoute.put('/trips', jsonParser, function(req, res) {
+tripsRoute.put('/trips', jsonParser, eatAuth, function(req, res) {
   var config = req.body.tripConfig;
-  User.findOne({email: config.userEmail}, function(err, user) {
+  User.findOne({_id: req.user._id}, function(err, user) {
     if (err) handleError(err, res, 500);
     if(config.remove === 'true') {
       User.update({_id: user._id}, {$pull: {trips: config.tripId}}, function() {
@@ -99,7 +98,7 @@ tripsRoute.put('/trips', jsonParser, function(req, res) {
   });
 });
 
-tripsRoute.delete('/trips', jsonParser, function(req, res) {
+tripsRoute.delete('/trips', jsonParser, eatAuth, function(req, res) {
   Trip.remove({_id: req.body.tripId}, function(err) {
     if (err) return handleError(err, res, 500);
     res.json({msg: 'success'});

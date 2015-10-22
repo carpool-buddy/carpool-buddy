@@ -1,8 +1,8 @@
 # carpool-buddy
 
-## Enviromental Variables
+## Environmental Variables
 
-The following enviromental variables are suggested for your machine
+The following environmental variables are suggested for your machine
 
 GOOGLE_MAPS_API_KEY
 APP_SECRET
@@ -30,12 +30,14 @@ GET /api/signin
 
 ### Trip Routes
 
-GET /api/trip/:userId/:stringifiedSearchObject
-  if only a userID is given it returns an array of trip objects that the user is 
+GET /api/trips
+
+  returns an array of trip objects that the user is 
   a part of on res.body.trips
 
-  if there is also a stringigiedSearchObject then search results will
-  be returned for the search view. The trip search object should have a
+GET /api/trips/:stringifiedSearchObject
+
+  search results will be returned for the search view. The trip search object should have a
   orgin, originTime, dest, and destTime, weekDays. It should look like:
 
 ```
@@ -57,25 +59,25 @@ res {
 }
 ```
 
-POST /api/trip
+POST /api/trips
   creates a trip entry in the database. Needs a JSON object
   attached to req.body.trip with the trip origin, originTime, dest,
-  destTime, weekDays, map, and userId. it should look like:
+  destTime, weekDays, map. it should look like:
 
 ```
-req.body.trip = {"tripName": "to work", "origin":"map coordinates", "originTime":"08:00 AM", "dest":"map coordinates",
- "destTime": "10:00 AM", "weekDays":"mon, tue, thu, sat", "userEmail":"example@test.com"}
+req.body.trips = {"tripName": "to work", "origin":"map coordinates", "originTime":"08:00 AM", "dest":"map coordinates",
+ "destTime": "10:00 AM", "weekDays":"mon, tue, thu, sat"}
 ```
 
 PUT /api/trip
   subscribes or unsubscribes a user from a trip object in the database.
   It takes a tripConfig object on req.body. tripConfig has the fields
-  'remove', 'userEmail', and 'tripId'. If remove is set to true, than the
+  'remove' and 'tripId'. If remove is set to true, than the
   user is unsubscribed from the trip, otherwise the user is added to the
   trip. An example of the tripConfig object is:
 
 ```
-req.body.tripConfig = {"remove": "true", "userEmail": "email@example.com", "tripId": "560d88ab95136958181e421f"};
+req.body.tripConfig = {"remove": "true", "tripId": "560d88ab95136958181e421f"};
 ```
 
 DELETE /api/trip
