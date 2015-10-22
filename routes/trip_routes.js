@@ -6,6 +6,7 @@ var handleError = require(__dirname + '/../lib/handle_error');
 var dateParser = require(__dirname + '/../lib/date_parser');
 var findDistance = require(__dirname + '/../app/js/find_distance');
 var eatAuth = require(__dirname + '/../lib/eat_auth');
+var reverseDateParse = require(__dirname + '/../lib/reverse_date_parse');
 
 var tripsRoute = module.exports = exports = express.Router();
 
@@ -14,6 +15,11 @@ tripsRoute.get('/trips', jsonParser, eatAuth, function(req, res) {
 
   Trip.find({travelers: req.user._id}, function(err, docs) {
 
+    docs.forEach(function(trip){
+      trip.originTime = reverseDateParse(trip.originTime);
+      trip.destTime = reverseDateParse(trip.destTime);
+    })
+;
     if (err) handleError(err, res, 500);
     res.json({trips: docs});
   });
@@ -21,6 +27,13 @@ tripsRoute.get('/trips', jsonParser, eatAuth, function(req, res) {
 
 tripsRoute.get('/allTrips', jsonParser, eatAuth, function(req, res) {
   Trip.find({}, function(err, docs) {
+
+    docs.forEach(function(trip){
+      trip.originTime = reverseDateParse(trip.originTime);
+      trip.destTime = reverseDateParse(trip.destTime);
+    });
+
+
     if (err) handleError(err, res, 500);
     res.json({trips: docs});
   });
