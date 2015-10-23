@@ -5,7 +5,7 @@ describe('users controller', function() {
   var $httpBackend;
   var $ControllerConstructor;
   var $scope;
-  var $window
+  var $window;
   
   beforeEach(angular.mock.module(function($provide) {
     $window = {

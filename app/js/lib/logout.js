@@ -1,13 +1,21 @@
 module.exports = function(app) {
   app.run(['$rootScope', '$cookies', '$window', '$http',
     function($scope, $cookies, $window, $http) {
-      $scope.loggedIn = function() {
+      $scope.checkLogin = function() {
         var eat = $cookies.get('eat');
-        return (eat && eat.length);
+
+        if(eat && eat.length) {
+          if($window.location.pathname === '/' || $window.location.pathname === '/index.html') {
+            $window.location.assign('/main.html')
+          }
+        }
+
+        if(!(eat && eat.length) && $window.location.pathname === '/main.html') {
+          $window.location.assign('/');
+        }
       };
 
       $scope.logOut = function() {
-        console.log('remove cookie');
         $cookies.remove('eat');
         $window.location.assign('/');
       };

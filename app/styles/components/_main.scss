@@ -56,12 +56,7 @@
     -ms-transform: rotate(180deg);
 }
 
-.content{
-  @include flex-container(flex,row,nowrap,center,center,center);
-  h3{
-    padding-right: 2%;
-  }
-}
+
 
 .third-banner {
   font-family: 'Josefin Sans', sans-serif;
@@ -101,11 +96,37 @@
   }
 
 }
+.banner-imgs-4{
+  overflow: hidden;
+  color: $text-light;
+  @media only screen and (min-width: 320px) {
+  height: 10px;
+  margin-bottom: 1em;
+ }
+
+  @media only screen and (min-width: 410px) {
+    height: 200px;
+  }
+
+  img {
+    width: 100%;
+  }
+
+}
 
 // desktop layout
 @media only screen and (min-width: 650px) {
 
-
+  .content{
+    @include flex-container(flex,row,wrap,center,center,center);
+    width: 500px;
+    background-color: $text-light;
+    border-radius: 4px;
+  }
+  .display-your-trips{
+    height: 500px;
+    overflow: auto;
+  }
   .main-content{
   }
   .main-filters{
@@ -113,6 +134,14 @@
   height: 570px;
   background: linear-gradient(to top left, #3E606F, $primary-color-light);
   padding-bottom: 2em;
+  margin-bottom: 1em;
+  }
+.main-filters-create{
+@include flex-container(flex,row,nowrap,space-around,center,center);
+  height: 570px;
+  background: linear-gradient(to top left, $primary-color-light, #3E606F);
+  padding-bottom: 2em;
+  margin-bottom: 2em;
   }
   .main-find{
     width: 500px;
