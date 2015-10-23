@@ -92,6 +92,7 @@
                   <p>Destination: {{ trip.dest }}</p>
                   <p>Departure Time: {{ trip.originTime }}</p>
                   <p>Arrival Time: {{ trip.destTime  }}</p>
+                  <p>Travelers: {{ trip.emails }}</p>
                 </li>
                 <button data-ng-click="tripSubscription(trip, 'true')">Unsubscribe</button>
               <p class="button delete" id="find-trip-expand" ng-click="removeTrip(trip)">DELETE</p>
@@ -119,7 +120,6 @@
         </section>
 
         <section class="main-trips">
-
 
 
         <section class="main-trips">

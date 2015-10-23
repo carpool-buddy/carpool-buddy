@@ -15,6 +15,15 @@ module.exports = function(app) {
       $http.get('/api/trips')
         .then(function(res) {
           $scope.trips = res.data.trips;
+          $scope.trips.forEach(function(trip) {
+            var searchObj = {idArray: trip.travelers};
+            $http.get('/api/findUsers/' + JSON.stringify(searchObj))
+              .then(function(res) {
+                trip.emails = res.data.userEmails;
+              }, function(res) {
+                console.log(res);
+              });
+          });
         }, function(res) {
           console.log(res);
         });
