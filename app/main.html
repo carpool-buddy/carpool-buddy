@@ -83,7 +83,7 @@
 
         <section class="main-trips">
           <h2 id="all">Your Trips</h2>
-          <section class="trip_info" data-ng-repeat="trip in trips">
+          <section class="trip_info" data-ng-repeat="trip in trips | orderBy:'id':true">
 
             <div class="content">
               <h3 >Trip Name: {{ trip.tripName }}</h3>
@@ -95,6 +95,7 @@
                 <p class="mapo">Destination: <span id="tripDest">{{ trip.dest }}</span></p>
                 <p>Departure Time: {{ trip.originTime }}</p>
                 <p>Arrival Time: {{ trip.destTime  }}</p>
+                <p>{{trip._id}}</p>
               </li>
               <div id="map"></div>
               <button data-ng-click="tripSubscription(trip, 'true')">Unsubscribe</button>
