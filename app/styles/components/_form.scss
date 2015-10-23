@@ -1,0 +1,157 @@
+.form,
+#login-form,
+#sign-up-form {
+  max-width: 450px;
+  width: 95%;
+  box-sizing: border-box;
+  background: #fff;
+  font-family: 'Josefin Sans', sans-serif;
+  color: black;
+  text-align: center;
+  border-radius: 5px;
+
+   a, a:hover, a:focus, a:visited {
+      text-decoration: none;
+      color: #00aeef;
+    }
+
+  form {
+    padding: 1.75em 2em 1.5em;
+  }
+
+  fieldset {
+    display: block;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: left;
+    border: none;
+
+    .form-left {
+      padding-left: 4em;
+      float: left;
+      width: calc(50% - 4em);
+    }
+
+    .form-right {
+      padding-left: 4em;
+      width: calc(50% - 4em);
+      display: inline;
+    }
+
+    a {
+      font-size: smaller;
+
+      &.form-close {
+        font-family: 'Times New Roman', Times, Baskerville, Georgia, serif;
+        position: absolute;
+        font-size: 1.5em;
+        color: #f00;
+        background-color: #fff;
+        border: 2px solid #fff;
+        border-radius: 40px;
+        padding-left: 0.25em;
+        padding-right: 0.25em;
+        top: 0;
+        left: 92%;
+
+        cursor: pointer;
+
+        &:hover {
+          color: #c50000;
+        }
+
+        @media only screen and (max-width: 450px) {
+           left: 90%;
+          border: 2px solid #eee;
+        }
+      }
+    }
+
+    label {
+       &.radio {
+        display: inline;
+      }
+
+      display: block;
+      padding-top: 0.6em;
+      padding-bottom: 0.4em;
+    }
+
+    textarea {
+      margin-top: 1em;
+      display: block;
+      width: 100%;
+      height: 100px;
+      padding: 0.5em;
+      overflow-y: auto; /* for IE scrollbars. */
+
+        @media only screen and (max-width: 450px) {
+          height: 75px;
+      }
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      padding: 0.65em 0.5em;
+      border-radius: 5px;
+
+      @media only screen and (max-width: 450px) {
+          padding-top: 0.75em;
+          padding-bottom: 0.75em;
+      }
+    }
+
+    input, textarea {
+        font-size: 15px;
+        line-height: 18px;
+        outline: none;
+        border: 2px solid #dbdbdb;
+
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+    }
+
+    button {
+      font-size: 1em;
+      font-weight: bold;
+      color: $primary-color-light;
+      display: block;
+      width: 100%;
+      margin-top: 1em;
+      padding-top: 1.5em;
+      padding-bottom: 1.5em;
+      background-color: #fff;
+      border: 3px solid $primary-color-light;
+      cursor: pointer;
+      -webkit-transition: 0.3s ease all;
+      transition: 0.3s ease all;
+
+      @media only screen and (max-width: 450px) {
+        margin-top: 1em;
+        padding-top: 1em;
+        padding-bottom: 1em;
+      }
+    }
+        button:hover {
+            color: #fff;
+            background-color: $primary-color-light;
+        }
+  }
+
+  p {
+    padding-top: 1.5em -2em 2em;
+    width: 100%;
+    margin-top: 1em;
+    color: black;
+    font-size: 1.5em;
+  }
+}
+
+#login-form,
+#sign-up-form {
+  display: none;
+  position: relative;
+}

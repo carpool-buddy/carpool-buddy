@@ -1,0 +1,11 @@
+<div class="trips">
+  <h2>{{ trip.name }}</h2>
+  <p>{{ trip.origin }}</p>
+  <p>{{ trip.destination }}</p>
+  <p>{{ trip.time }}</p>
+  <p>{{ trip.day }}</p>
+  <div id="map"></div>
+  <script src='display_route.js'></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key="+API_KEY+"&callback=initMap"
+       async defer></script>
+</div>

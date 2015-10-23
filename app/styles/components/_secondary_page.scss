@@ -1,0 +1,67 @@
+.secondary_page {
+ font-family: 'Josefin Sans', sans-serif;
+ margin: 7em 10% 2em;
+ text-align: center;
+
+ h1 {
+  margin-bottom: 1em;
+ }
+
+ @media only screen and (min-width: 320px) {
+   p{
+     font-size: 1.5em;
+   }
+
+ }
+
+ @media only screen and (min-width: 410px) {
+   p{
+     font-size: 2em;
+   }
+ }
+
+}
+
+.secondary-banner {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.5em;
+  position: absolute;
+  width: 100%;
+  ul{
+  @include flex-container(flex,row,nowrap,space-around,center,center);
+    padding-left: 0;
+  }
+  li a{
+    color: $text-light;
+  }
+  @media only screen and (min-width: 650px) {
+  font-size: 2.5em;
+  }
+  ul{
+    padding-top: 1em;
+  }
+}
+
+.banner-imgs-2{
+  width: auto;
+  overflow: hidden;
+
+
+  @media only screen and (min-width: 410px) {
+    height: 220px;
+  }
+
+  img {
+    width: 100%;
+  }
+
+}
+// .home {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   z-index: 9999;
+//   width: 100%;
+//   height: 50px;
+//   background-color: #00a087;
+// }

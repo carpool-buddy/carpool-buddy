@@ -14,6 +14,64 @@
     "carpool-buddy"
   ],
   "author": "",
+  "contributors": [
+    {
+      "name": "Austin A. King",
+      "email": "aust.a.king@gmail.com"
+    },
+    {
+      "name": "Zach Gordon",
+      "email": "zachkgordon@gmail.com"
+    },
+    {
+      "name": "Erik Luetkehans",
+      "email": "eluetkehans@gmail.com"
+    },
+    {
+      "name": "James Norton",
+      "email": "james.norton@me.com"
+    },
+    {
+      "name": "Kasim Siddiqui",
+      "email": "kasimsiddiqui@gmail.com"
+    }
+  ],
+  "dependencies": {
+    "bcrypt": "^0.8.5",
+    "body-parser": "^1.13.3",
+    "eat": "^0.1.1",
+    "express": "^4.13.3",
+    "mongoose": "^4.1.7"
+  },
+  "devDependencies": {
+    "angular": "^1.4.7",
+    "angular-base64": "^2.0.5",
+    "angular-cookies": "^1.4.7",
+    "angular-mocks": "^1.4.7",
+    "angular-route": "^1.4.7",
+    "angular-ui-router": "^0.2.15",
+    "chai": "^3.2.0",
+    "chai-http": "^1.0.0",
+    "google-distance": "^1.0.1",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.0.2",
+    "gulp-express": "^0.3.5",
+    "gulp-mocha": "^2.1.3",
+    "gulp-ng-config": "^1.2.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-sass": "^2.0.4",
+    "gulp-webserver": "^0.9.1",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.10",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "minutes-seconds-milliseconds": "^1.0.3",
+    "mocha": "^2.3.2",
+    "phantomjs": "^1.9.18",
+    "require-dir": "^0.3.0",
+    "webpack": "^1.12.2",
+    "webpack-stream": "^2.1.1"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/carpool-buddy/carpool-buddy/issues"

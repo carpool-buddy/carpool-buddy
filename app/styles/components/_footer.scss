@@ -1,0 +1,48 @@
+footer {
+  p {
+    font-size: .7em;
+    padding-bottom: 1em;
+  }
+  @include flex-container(flex,row,nowrap,center,center,center);
+  font-family: 'Josefin Sans', sans-serif;
+  color: $primary-color;
+  font-size: 1em;
+  padding-top: 2em;
+  ul {
+    padding-left: 5%;
+    padding-bottom: 1em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  li {
+    padding-left: .5em;
+    padding-right: .5em;
+    display: inline;
+  }
+}
+@media only screen and (min-width: 650px) {
+  footer{
+    p {
+      font-size: 1.5em;
+    }
+    li{
+      font-size: 1.5em;
+    }
+  }
+}
+.rotate-icon{
+  -webkit-transition: -webkit-transform 0.4s ease-out;
+  -moz-transition: -moz-transform 0.4s ease-out;
+  -transition: -transform 0.4s ease-out;
+}
+.home {
+  position:fixed;
+  right: 2%;
+  bottom:0px;
+  font-size: 50px;
+}
+.rotate-home:hover .rotate-icon{
+    -webkit-transform: rotate(360deg);
+    -moz-tansform: rotate(360deg);
+    -transform: rotate(360deg);
+  }

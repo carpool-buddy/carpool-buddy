@@ -1,0 +1,121 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Car Pool Buddy</title>
+    <meta name="description" content="Carpool Finder Web App, find a carpool in Seattle">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="/styles/main.css">
+  </head>
+  <body data-ng-app="carpoolApp">
+    <header>
+      <h1 class="logo">Car Pool Buddy</h1>
+      <a href="#login-form" class="btn log_in_top" id="login_button">Log In</a>
+    </header>
+
+    <main>
+      <div id="login-form" data-ng-controller="SigninController">
+        <form name="loginForm" data-ng-submit="sendToServer(user)">
+          <fieldset>
+            <a class="form-close" id="form-close">X</a>
+            <h2 class="logo">Car Pool Buddy</h2>
+
+            <label for="form-email">Email</label>
+            <input type="email" name="email" id="form-email" spellcheck="false" data-ng-model="user.email" required/>
+            <label for="form-password">Password</label>
+            <input type="password" name="password" id="login-password" spellcheck="false" data-ng-model="user.password" required/>
+            <button type="submit">Submit</login>
+          </fieldset>
+        </form>
+      </div>
+      
+      <div id="sign-up-form" data-ng-controller="SignupController">
+        <form name="userForm" data-ng-submit="sendToServer(user)" data-user="user">
+          <fieldset>
+            <a class="form-close" id="signup-form-close">X</a>
+            <h2 class="logo">Car Pool Buddy</h2>
+            <p>Create an Account</p>
+
+            <label for="form-email">Email</label>
+            <input type="email" name="email" id="form-email" spellcheck="false" data-ng-model="user.email" required/>
+
+            <label for="form-password">Password</label>
+            <input type="password" name="password" id="login-password" spellcheck="false" data-ng-model="user.password" required match="user.confirmation"/>
+
+
+            <label data-ng-if="confirmPassword" for="form-password-confirm">Confirm Password</label>
+
+            <input type="password" name="password" id="login-password" spellcheck="false" data-ng-model="user.confirmation" required match="user.password"/>
+            <p data-ng-if="!passwordMatch(user)">Passwords Do Not Match!</p>
+
+            <button type="submit" data-ng-disabled="disableButton(user)">Submit</login>
+          </fieldset>
+        </form>
+      </div>
+
+      <div id="lean_overlay"></div>
+
+      <div>
+        <section class="splash_page">
+          <h2>Find a Car Pool Buddy. Share your commute.</h2>
+          <h2>Change the world.</h2>
+        </section>
+        <div class="banner-imgs">
+          <img src="/imgs/big-bush.jpg">
+        </div>
+      </div>
+
+      <section class="secondary_page">
+        <p>Within our community find someone with a similar route to work. Whether you have a car or need a ride, connect and help reduce cars on the road. Find someone to join you on your journey. Log in and find that someone.</p>
+      </section>
+
+      <section class="secondary_page">
+        <h1 class="logo">Car Pool Buddy</h1>
+        <br>
+        <a href="#sign-up-form" class="btn" id="sign_up">Sign Up</a>
+        <a href="#login-form" class="btn" id="login_button_2">Log In</a>
+
+      </section>
+
+      <div>
+        <section class="secondary-banner">
+          <ul>
+            <li><a href="">About</a></li>
+            <li><a href="">FAQ</a></li>
+            <li><a href="">Contact</a></li>
+          </ul>
+        </section>
+        <div class="banner-imgs-2">
+          <img src="/imgs/static-cars.jpg" width="1400">
+        </div>
+      </div>
+
+    </main>
+
+    <footer>
+      <p class="footer">&#169 Carpool Buddy LLC</p>
+      <ul>
+        <li><a href="https://www.facebook.com/"><span class="icon-facebook2"></a></span></li>
+        <li><a href="https://www.twitter.com/"><span class="icon-twitter"></span></a></li>
+        <li><a href="https://www.pinterest.com/"><span class="icon-pinterest2"></span></a></li>
+        <li><a href="https://www.github.com/"><span class="icon-github"></span></a></li>
+      </ul>
+    </footer>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-2.1.4.min.js"><\/script>')</script>
+    <script type="text/javascript" src="js/jquery.leanModal.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="bundle.js"></script>
+
+    <!--
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+  -->
+  </body>
+</html>

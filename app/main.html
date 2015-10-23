@@ -1,0 +1,156 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>CarPoolBuddy</title>
+    <meta name="description" content="Carpool Finder Web App, find a carpool in Seattle">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles/main.css">
+  </head>
+  <body data-ng-app="carpoolApp">
+    <header>
+      <section class="nav">
+        <div class="header-nav">
+          <div>
+            <h1 id="home" class="logo-nav">Car Pool Buddy</h1>
+          </div>
+          <nav>
+            <label for="show-menu">
+              <span class="icon-menu"></span>
+              <input type="checkbox" id="show-menu">
+            <ul>
+              <li><a href data-ng-click="logOut()">Sign Out</a></li>
+              <li><a href="#all">All Trips</a></li>
+              <li><a href="#find">Find Trips</a></li>
+              <li><a href="#create">Create Trips</a></li>
+              <li><a href="#delete">Delete Trips</a></li>
+            </ul>
+          </nav>
+        </div>
+      </section>
+    </header>
+    <main data-ng-controller="TripsController" data-ng-init="refresh()">
+      <div class="hidden">
+        <section class="third-banner">
+          <ul>
+            <li>Find A Trip</li>
+            <li>Create A Trip</li>
+          </ul>
+        </section>
+        <div class="banner-imgs-3">
+          <img src="/imgs/leaves.jpg" width="1400">
+        </div>
+      </div>
+      <div class="main-content">
+        <section class="main-filters">
+          <section class="main-find">
+            <h2 id="find" class=" hidden_span">Find a Trip <span class="expand" id="find-trip-expand">+</span></h2>
+            <form id="find-trip-form" class="form hidden" data-ng-submit="findTrip(tripSearchObj)">
+              <fieldset>
+                <label for="find-origin">Where to Start?</label>
+                <input type="text" name="find-origin" id="find-origin" spellcheck="false" data-ng-model="tripSearchObj.origin" />
+                <label for="find-destination">Where to Go?</label>
+                <input type="text" name="find-destination" id="find-destination" spellcheck="false" data-ng-model="tripSearchObj.dest" />
+                <label for="find-time">What Time to Go?</label>
+                <input type="text" name="find-time" id="find-time" spellcheck="false" data-ng-model="tripSearchObj.originTime" placeholder="HH:MM AM/PM"/>
+
+                <label for="find-arrive-time">What Time to Get There?</label>
+                <input type="text" name="find-time" id="find-arrive-time" spellcheck="false" data-ng-model="tripSearchObj.destTime" placeholder="HH:MM AM/PM"/>
+                <!-- <label for="find-days" >What Days to Go?</label> -->
+               <!-- <fieldset class="form-left">
+                <label><input type="checkbox" value="sun"/>Sunday</label>
+                <label><input type="checkbox" value="tue" checked="true"/>Tuesday</label>
+                <label><input type="checkbox" value="thu" checked="true"/>Thursday</label>
+                <label><input type="checkbox" value="sat"/>Saturday</label>
+              </fieldset>
+              <fieldset class="form-right">
+                <label><input type="checkbox" value="mon" checked="true"/>Monday</label>
+                <label><input type="checkbox" value="wed" checked="true"/>Wednesday</label>
+                <label><input type="checkbox" value="fri" checked="true"/>Friday</label>
+              </fieldset> -->
+                <button type="submit">Submit</login>
+              </fieldset>
+            </form>
+          </section> <!-- main-find -->
+          <section class="main-create">
+            <h2 id="create" class=" hidden_span">Create A Trip <span class="expand" id="create-trip-expand">+</span></h2>
+            <form id="create-trip-form" class="form hidden" data-ng-submit="createTrip(newTrip)">
+              <fieldset>
+                <label for="create-newTrip">Name your trip</label>
+                <input type="text" name="create-tripName" id="create-tripName" spellcheck="false" data-ng-model="newTrip.tripName"/>
+                <label for="create-origin">Where to Start?</label>
+                <input type="text" name="create-origin" id="create-origin" spellcheck="false" data-ng-model="newTrip.origin"/>
+                <label for="create-destination">Where to Go?</label>
+                <input type="text" name="create-destination" id="create-destination" spellcheck="false" data-ng-model="newTrip.dest" />
+                <label for="create-time">What Time to Go?</label>
+                <input type="text" name="create-time" id="create-time" spellcheck="false" data-ng-model="newTrip.originTime" placeholder="HH:MM AM/PM"/>
+                <label for="create-arrive-time">What Time to Get There?</label>
+                <input type="text" name="create-time" id="create-arrive-time" spellcheck="false" data-ng-model="newTrip.destTime" placeholder="HH:MM AM/PM"/>
+ <!--           <label for="create-days">What Days to Go?</label>
+               <fieldset class="form-left">
+                <label><input type="checkbox" value="sun"/>Sunday</label>
+                <label><input type="checkbox" value="tue" checked="true"/>Tuesday</label>
+                <label><input type="checkbox" value="thu" checked="true"/>Thursday</label>
+                <label><input type="checkbox" value="sat"/>Saturday</label>
+              </fieldset>
+              <fieldset class="form-right">
+                <label><input type="checkbox" value="mon" checked="true"/>Monday</label>
+                <label><input type="checkbox" value="wed" checked="true"/>Wednesday</label>
+                <label><input type="checkbox" value="fri" checked="true"/>Friday</label>
+              </fieldset> -->
+                <button type="submit">Submit</login>
+              </fieldset>
+            </form>
+          </section> <!-- main-create -->
+        </section> <!-- filters -->
+
+
+        <section class="main-trips">
+          <h2 id="all">All Trips</h2>
+          <section class="trip_info" data-ng-repeat="trip in allTrips">
+            <div class="content">
+              <h3 >Trip Name: {{ trip.tripName }}</h3>
+              <span class="expand_delete" id="trips-1">&#8595</span>
+            </div>
+            <ul id="trips-details-1">
+              <li>
+                <p>Origin: {{ trip.origin }}</p>
+                <p>Destination: {{ trip.dest }}</p>
+                <p>Departure Time: {{ trip.originTime }}</p>
+                <p>Arrival Time: {{ trip.destTime  }}</p>
+              </li>
+            </ul>
+          </section>
+
+
+      <section class="trip_info">
+        <h2 id="delete">Delete a Trip</h2>
+        <div class="content">
+          <ul data-ng-repeat="trip in trips">
+            <p>Trip Name: {{ trip.tripName }}</p>
+            <span class="delete" id="find-trip-expand" ng-click="removeTrip(trip)">-</span>
+          </ul>
+        </div>
+        <div class="home">
+          <a class="rotate-home"href="#home"><span class="rotate-icon">&#8962</span></a>
+        </div>
+      </section>
+        </section> <!-- main trips -->
+      </div>
+    <main>
+    <footer>
+      <p class="footer">&#169 Carpool Buddy LLC</p>
+      <ul>
+        <li class="footer"><a href="https://www.facebook.com/"><span class="icon-facebook2"></a></span></li>
+        <li class="footer"><a href="https://www.twitter.com/"><span class="icon-twitter"></span></a></li>
+        <li class="footer"><a href="https://www.pinterest.com/"><span class="icon-pinterest2"></span></a></li>
+        <li class="footer"><a href="https://www.github.com/"><span class="icon-github"></span></a></li>
+      </ul>
+    </footer>
+    <script>window.jQuery || document.write('<script src="js/jquery-2.1.4.min.js"><\/script>')</script>
+    <script type="text/javascript" src="js/jquery.leanModal.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="bundle.js"></script>
+  </body>
+</html>
