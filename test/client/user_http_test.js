@@ -39,7 +39,7 @@ describe('users controller', function() {
     expect(typeof controller).toBe('object');
   });
 
-  describe('REST requests', function() {
+  describe('POST request', function() {
     beforeEach(angular.mock.inject(function(_$httpBackend_, $rootScope) {
       $httpBackend = _$httpBackend_;
       $scope = $rootScope.$new();
@@ -52,12 +52,36 @@ describe('users controller', function() {
     });
 
     it('should be able to sign up a user', function() {
+      var testUser1 = {_id: 1, email: 'tester1@test.test', password: 'foobar123'};
       $httpBackend
-        .expectPOST('/api/signup', {_id: 1, email: 'testerattest.test', password: 'foobar123'})
+        .expectPOST('/api/signup', testUser1)
         .respond(200, {token: 'mytoken'});
-      $scope.sendToServer({_id: 1, email: 'testerattest.test', password: 'foobar123'});
+      $scope.sendToServer(testUser1);
       $httpBackend.flush();
-      //expect($window.location.path).toBe('/main.html');
-    })
+      expect($window.location.path).toBe('/main.html');
+    });
+  });
+
+  describe('GET request', function() {
+    beforeEach(angular.mock.inject(function(_$httpBackend_, $rootScope) {
+      $httpBackend = _$httpBackend_;
+      $scope = $rootScope.$new();
+      $ControllerConstructor('SigninController', {$scope: $scope});
+    }));
+
+    afterEach(function() {
+      $httpBackend.verifyNoOutstandingExpectation();
+      $httpBackend.verifyNoOutstandingRequest();
+    });
+
+    it('should be able to sign in a user', function() {
+      var testUser2 = {email: 'tester2@test.test', password: 'foobar123'};
+      $httpBackend
+        .expectGET('/api/signin')
+        .respond(200, {token: 'mytoken'});
+      $scope.sendToServer(testUser2);
+      $httpBackend.flush();
+      expect($window.location.path).toBe('/main.html');
+    });
   });
 });
