@@ -122,6 +122,7 @@
     width: 500px;
     background-color: $text-light;
     border-radius: 4px;
+    overflow: auto;
   }
   .display-your-trips{
     height: 500px;
@@ -152,6 +153,10 @@
   }
   .main-trips{
     @include flex-container(flex,column,nowrap,flex-start,center,center);
+  }
+  .display-all-trips{
+    @include flex-container(flex,row,wrap,flex-start,center,center);
+
   }
 }
 

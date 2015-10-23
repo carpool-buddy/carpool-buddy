@@ -121,22 +121,23 @@
         <section class="main-trips">
 
 
-
-        <section class="main-trips">
-          <h2 id="all"><a href="#" id="trips-1">All Trips</a></h2>
-          <section  class="trips-details-1"  class="trip_info" data-ng-repeat="trip in allTrips">
-            <div class="content hidden">
-              <h3 >Trip Name: {{ trip.tripName }}</h3>
-            </div>
-            <ul >
-              <li>
-                <p>Origin: {{ trip.origin }}</p>
-                <p>Destination: {{ trip.dest }}</p>
-                <p>Departure Time: {{ trip.originTime }}</p>
-                <p>Arrival Time: {{ trip.destTime  }}</p>
-              </li>
-            </ul>
-          </section>
+          <section class="main-trips">
+            <h2 id="all">All Trips</h2>
+            <section class="trip_info" data-ng-repeat="trip in allTrips">
+            <div class="display-all-trips">
+              <div class="content ">
+                <h3 >Trip Name: {{ trip.tripName }}</h3>
+              </div>
+              <ul >
+                <li>
+                  <p>Origin: {{ trip.origin }}</p>
+                  <p>Destination: {{ trip.dest }}</p>
+                  <p>Departure Time: {{ trip.originTime }}</p>
+                  <p>Arrival Time: {{ trip.destTime  }}</p>
+                </li>
+              </ul>
+          </div>
+            </section>
 
 
    <!--    <section class="trip_info">
