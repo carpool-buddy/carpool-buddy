@@ -56,7 +56,6 @@ module.exports = function(app) {
     };
 
     $scope.tripSubscription = function(trip, remove) {
-      console.log(trip + remove);
       var tripConfig = {"remove": remove, "tripId": trip._id};
       $http.put('/api/trips', {tripConfig: tripConfig})
         .then(function(res) {
