@@ -79,21 +79,20 @@
         <section class="main-filters-create">
           <section class="display-your-trips">
             <h2 id="your">Your Trips</h2>
-            <section class="trip_info" data-ng-repeat="trip in trips">
-
+            <section class="trip_info" data-ng-repeat="trip in trips | orderBy:'id':true">
               <div>
                 <h3 >Trip Name: {{ trip.tripName }}</h3>
               </div>
-                  <p>Origin: {{ trip.origin }}</p>
-                  <p>Destination: {{ trip.dest }}</p>
+                  <p>Origin: <span id="tripOrigin">{{ trip.origin }}</span></p>
+                  <p>Destination: <span id="tripDest">{{ trip.dest }}</span></p>
                   <p>Departure Time: {{ trip.originTime }}</p>
                   <p>Arrival Time: {{ trip.destTime  }}</p>
                   <p>Travelers: {{ trip.emails }}</p>
-
+                  <div id="map"></div>
                 <p class="sub-btn" data-ng-click="tripSubscription(trip, 'true')">Unsubscribe</p>
               <p class="delete-trip" id="find-trip-expand" ng-click="removeTrip(trip)">DELETE</p>
-
             </section>
+
           </section>
           <section class="main-create">
             <h2>Create A Trip <span class="expand hidden_span" id="create-trip-expand">+</span></h2>
@@ -114,8 +113,8 @@
             </form>
           </section> <!-- main-create -->
         </section>
-        <section class="main-trips">
 
+        <section class="main-trips">
 
           <section class="main-trips">
             <h2 id="all">All Trips</h2>
@@ -166,6 +165,7 @@
 
         </section> <!-- main trips -->
       </div>
+
     <main>
     <footer>
       <p class="footer">&#169 Carpool Buddy LLC</p>
@@ -180,5 +180,9 @@
     <script type="text/javascript" src="js/jquery.leanModal.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="bundle.js"></script>
+
+    <script src='display_route/display_route.js'></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
+        async defer></script>
   </body>
 </html>
