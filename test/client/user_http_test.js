@@ -5,15 +5,19 @@ describe('users controller', function() {
   var $httpBackend;
   var $ControllerConstructor;
   var $scope;
-  var window = {
-    location: {
-      assign: function(page) {
-        this.path = page;
-      }
-    }
-  };
+  var $window
+  
   beforeEach(angular.mock.module(function($provide) {
-    $provide.constant('$window', window);
+    $window = {
+      location: {
+        assign: function(page) {
+          this.path = page;
+        }
+      },
+      document: window.document
+    };
+
+    $provide.constant('$window', $window);
   }));
 
   beforeEach(angular.mock.module('carpoolApp'));
