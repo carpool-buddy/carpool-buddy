@@ -87,7 +87,7 @@
 
             <div class="content">
               <h3 >Trip Name: {{ trip.tripName }}</h3>
-              <span class="expand_delete" id="trips-1">&#8595</span>
+              <p class="delete" id="find-trip-expand" ng-click="removeTrip(trip)">Delete</p>
             </div>
             <ul id="trips-details-1">
               <li>
@@ -105,7 +105,6 @@
           <section class="trip_info" data-ng-repeat="trip in allTrips">
             <div class="content">
               <h3 >Trip Name: {{ trip.tripName }}</h3>
-              <span class="expand_delete" id="trips-1">&#8595</span>
             </div>
             <ul id="trips-details-1">
               <li>
@@ -117,29 +116,17 @@
             </ul>
           </section>
 
-
-      <section class="trip_info">
-        <h2 id="delete">Delete a Trip</h2>
-        <div class="content">
-          <ul data-ng-repeat="trip in trips">
-            <p>Trip Name: {{ trip.tripName }}</p>
-            <span class="delete" id="find-trip-expand" ng-click="removeTrip(trip)">-</span>
-          </ul>
-        </div>
-        <div class="home">
-          <a class="rotate-home"href="#home"><span class="rotate-icon">&#8962</span></a>
-        </div>
-      </section>
-
       <section class="trip_info">
         <h2 id="delete">Search Results</h2>
         <div class="content">
           <ul data-ng-repeat="trip in tripSearchResults">
             <p ng-show="if {{ trip.tripName.length }}">Trip Name: {{ trip.tripName }}</p>
+            <p ng-show="if {{rip.origin.length">{{ trip.origin }}</p>
+            <p ng-show="if {{rip.dest.length">{{ trip.dest }}</p>
+            <p ng-show="if {{rip.originTime.length">{{ trip.originTime }}</p>
+            <p ng-show="if {{rip.destTime.length">{{ trip.destTime  }}</p>
           </ul>
         </div>
-        <div class="home">
-          <a class="rotate-home"href="#home"><span class="rotate-icon">&#8962</span></a>
         </div>
       </section>
 
