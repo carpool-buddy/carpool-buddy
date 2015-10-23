@@ -11,8 +11,8 @@ function initMap() {
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
   directionsService.route({
-    origin: "Seattle, WA", //example
-    destination: "Bellevue, WA", //example
+    origin: document.getElementById('tripOrigin').text(), //example
+    destination: document.getElementById('tripDest').text(), //example
     travelMode: google.maps.TravelMode.DRIVING
   }, function(response, status) {
     if (status === google.maps.DirectionsStatus.OK) {
