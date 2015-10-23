@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/styles/main.css">
   </head>
-  <body data-ng-app="carpoolApp">
+  <body data-ng-app="carpoolApp" data-ng-init="checkLogin()">
     <header>
       <section class="nav">
         <div class="header-nav">
@@ -88,8 +88,11 @@
                   <p>Destination: {{ trip.dest }}</p>
                   <p>Departure Time: {{ trip.originTime }}</p>
                   <p>Arrival Time: {{ trip.destTime  }}</p>
+                  <p>Travelers: {{ trip.emails }}</p>
+
                 <p class="sub-btn" data-ng-click="tripSubscription(trip, 'true')">Unsubscribe</p>
               <p class="delete-trip" id="find-trip-expand" ng-click="removeTrip(trip)">DELETE</p>
+
             </section>
           </section>
           <section class="main-create">
@@ -127,6 +130,7 @@
                   <p>Arrival Time: {{ trip.destTime  }}</p>
           </div>
             </section>
+
 
 
    <!--    <section class="trip_info">

@@ -27,6 +27,18 @@ tripsRoute.get('/trips', jsonParser, eatAuth, function(req, res) {
   });
 });
 
+tripsRoute.get('/findUsers/:searchObj', jsonParser, eatAuth, function(req, res) {
+  var search = JSON.parse(req.params.searchObj).idArray;
+  User.find({_id: {$in: search}}, function(err, docs) {
+    var userEmails = [];
+    docs.forEach(function(user) {
+      userEmails.push(user.email);
+    });
+    if (err) handleError(err, res, 500);
+    res.json({userEmails: userEmails});
+  });
+});
+
 tripsRoute.get('/allTrips', jsonParser, eatAuth, function(req, res) {
   Trip.find({}, function(err, docs) {
     var results = [];
@@ -39,6 +51,13 @@ tripsRoute.get('/allTrips', jsonParser, eatAuth, function(req, res) {
     });
     if (err) handleError(err, res, 500);
     res.json({trips: results});
+  });
+});
+
+tripsRoute.get('/findUser/:id', jsonParser, eatAuth, function(req, res) {
+  User.findOne({_id: req.params.id}, function(err, user) {
+    if (err) handleError(err, res, 500);
+    res.json({email: user.email});
   });
 });
 
