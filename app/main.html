@@ -134,8 +134,8 @@
       <section class="trip_info">
         <h2 id="delete">Search Results</h2>
         <div class="content">
-          <ul data-ng-repeat="trip in trips">
-            <p ng-show="if {{ tripSearchObj.tripName.length }}">Trip Name: {{ tripSearchObj.tripName }}</p>
+          <ul data-ng-repeat="trip in tripSearchResults">
+            <p ng-show="if {{ trip.tripName.length }}">Trip Name: {{ trip.tripName }}</p>
           </ul>
         </div>
         <div class="home">
