@@ -14,6 +14,23 @@
   background-color: $logo-color;
 }
 
+.delete-trip{
+  cursor: pointer;
+  background-color: $logo-color;
+  padding: .2em;
+  text-align: center;
+  width: 90px;
+  border-radius: 4px;
+  font-size: 1.25rem;
+}
+.sub-btn{
+  background-color: #598aa0;
+  padding: .2em;
+  text-align: center;
+  width: 120px;
+  border-radius: 4px;
+  font-size: 1.25rem;
+}
 
 // .expand {
 //   @extend .expand_delete;
@@ -46,6 +63,13 @@
 //     border-bottom: 1px solid black;
 //   }
 // }
+
+.main-basic_style{
+  input{
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 2em;
+  }
+}
 .hide {
   display: none;
 }
@@ -83,7 +107,7 @@
   overflow: hidden;
   color: $text-light;
   @media only screen and (min-width: 320px) {
-  height: 50px;
+  height: 10px;
   margin-bottom: 1em;
  }
 
@@ -114,20 +138,34 @@
 
 }
 
+  .content{
+    background-color: $text-light;
+    width: 100%;
+    @media only screen and (min-width: 650px) {
+    margin-top: 1em;
+    display: inline;
+    width: 500px;
+    height: 540px;
+    font-size: 1.2em;
+    border-radius: 4px;
+    overflow: auto;
+    display: relative;
+    background-color: transparent;
+
+    }
+  }
 // desktop layout
 @media only screen and (min-width: 650px) {
 
-  .content{
-    @include flex-container(flex,row,wrap,center,center,center);
-    width: 500px;
-    background-color: $text-light;
-    border-radius: 4px;
+  .trip-titles{
+    color: $text-light;
+  }
+  .content-layout{
   }
   .display-your-trips{
+    font-size: 1.5em;
     height: 500px;
     overflow: auto;
-  }
-  .main-content{
   }
   .main-filters{
   @include flex-container(flex,row,nowrap,space-around,center,center);
@@ -152,6 +190,11 @@
   }
   .main-trips{
     @include flex-container(flex,column,nowrap,flex-start,center,center);
+  }
+  .display-all-trips{
+    border-bottom: 1px solid $primary-color-light;
+    @include flex-container(flex,row,wrap,center,center,center);
+
   }
 }
 

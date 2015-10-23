@@ -40,6 +40,8 @@ footer {
   right: 2%;
   bottom:0px;
   font-size: 50px;
+  a {color: $logo-color;
+  }
 }
 .rotate-home:hover .rotate-icon{
     -webkit-transform: rotate(360deg);
