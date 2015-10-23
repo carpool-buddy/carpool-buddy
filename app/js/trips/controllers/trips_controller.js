@@ -35,6 +35,7 @@ module.exports = function(app) {
     }
 
     $scope.findTrip = function(tripSearchObj) {
+      console.log(tripSearchObj);
       var search = JSON.stringify(tripSearchObj);
       $http.get('/api/trips/' + search)
         .then(function(res) {

@@ -54,21 +54,8 @@
                 <input type="text" name="find-destination" id="find-destination" spellcheck="false" data-ng-model="tripSearchObj.dest" />
                 <label for="find-time">What Time to Go?</label>
                 <input type="text" name="find-time" id="find-time" spellcheck="false" data-ng-model="tripSearchObj.originTime" placeholder="HH:MM AM/PM"/>
-
-                <label for="find-arrive-time">What Time to Get There?</label>
-                <input type="text" name="find-time" id="find-arrive-time" spellcheck="false" data-ng-model="tripSearchObj.destTime" placeholder="HH:MM AM/PM"/>
-                <!-- <label for="find-days" >What Days to Go?</label> -->
-               <!-- <fieldset class="form-left">
-                <label><input type="checkbox" value="sun"/>Sunday</label>
-                <label><input type="checkbox" value="tue" checked="true"/>Tuesday</label>
-                <label><input type="checkbox" value="thu" checked="true"/>Thursday</label>
-                <label><input type="checkbox" value="sat"/>Saturday</label>
-              </fieldset>
-              <fieldset class="form-right">
-                <label><input type="checkbox" value="mon" checked="true"/>Monday</label>
-                <label><input type="checkbox" value="wed" checked="true"/>Wednesday</label>
-                <label><input type="checkbox" value="fri" checked="true"/>Friday</label>
-              </fieldset> -->
+                <label for="find-time">What Time to Arrive?</label>
+                <input type="text" name="find-time" id="find-time" spellcheck="false" data-ng-model="tripSearchObj.destTime" placeholder="HH:MM AM/PM"/>
                 <button type="submit">Submit</login>
               </fieldset>
             </form>
@@ -87,23 +74,30 @@
                 <input type="text" name="create-time" id="create-time" spellcheck="false" data-ng-model="newTrip.originTime" placeholder="HH:MM AM/PM"/>
                 <label for="create-arrive-time">What Time to Get There?</label>
                 <input type="text" name="create-time" id="create-arrive-time" spellcheck="false" data-ng-model="newTrip.destTime" placeholder="HH:MM AM/PM"/>
- <!--           <label for="create-days">What Days to Go?</label>
-               <fieldset class="form-left">
-                <label><input type="checkbox" value="sun"/>Sunday</label>
-                <label><input type="checkbox" value="tue" checked="true"/>Tuesday</label>
-                <label><input type="checkbox" value="thu" checked="true"/>Thursday</label>
-                <label><input type="checkbox" value="sat"/>Saturday</label>
-              </fieldset>
-              <fieldset class="form-right">
-                <label><input type="checkbox" value="mon" checked="true"/>Monday</label>
-                <label><input type="checkbox" value="wed" checked="true"/>Wednesday</label>
-                <label><input type="checkbox" value="fri" checked="true"/>Friday</label>
-              </fieldset> -->
                 <button type="submit">Submit</login>
               </fieldset>
             </form>
           </section> <!-- main-create -->
         </section> <!-- filters -->
+
+
+        <section class="main-trips">
+          <h2 id="all">Your Trips</h2>
+          <section class="trip_info" data-ng-repeat="trip in trips">
+
+            <div class="content">
+              <h3 >Trip Name: {{ trip.tripName }}</h3>
+              <span class="expand_delete" id="trips-1">&#8595</span>
+            </div>
+            <ul id="trips-details-1">
+              <li>
+                <p>Origin: {{ trip.origin }}</p>
+                <p>Destination: {{ trip.dest }}</p>
+                <p>Departure Time: {{ trip.originTime }}</p>
+                <p>Arrival Time: {{ trip.destTime  }}</p>
+              </li>
+            </ul>
+          </section>
 
 
         <section class="main-trips">
@@ -136,6 +130,19 @@
           <a class="rotate-home"href="#home"><span class="rotate-icon">&#8962</span></a>
         </div>
       </section>
+
+      <section class="trip_info">
+        <h2 id="delete">Search Results</h2>
+        <div class="content">
+          <ul data-ng-repeat="trip in trips">
+            <p ng-show="if {{ tripSearchObj.tripName.length }}">Trip Name: {{ tripSearchObj.tripName }}</p>
+          </ul>
+        </div>
+        <div class="home">
+          <a class="rotate-home"href="#home"><span class="rotate-icon">&#8962</span></a>
+        </div>
+      </section>
+
         </section> <!-- main trips -->
       </div>
     <main>

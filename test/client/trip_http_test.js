@@ -81,6 +81,7 @@ describe('trips controller', function() {
       var trip = {"tripName": "test", "_id": 1};
       $scope.trips = [trip];
       $httpBackend.expectDELETE('/api/trips/' + trip._id).respond(200, {msg: "success"});
+      $httpBackend.expectGET('/api/allTrips').respond(200, {});
       $scope.removeTrip(trip);
       $httpBackend.flush();
       expect($scope.trips.indexOf(trip)).toBe(-1);
