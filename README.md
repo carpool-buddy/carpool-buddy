@@ -1,4 +1,4 @@
-# carpool-buddy
+# carpool-buddy [![Build Status](https://travis-ci.org/carpool-buddy/carpool-buddy.svg)](https://travis-ci.org/carpool-buddy/carpool-buddy)
 
 ## Environmental Variables
 
@@ -32,7 +32,7 @@ GET /api/signin
 
 GET /api/trips
 
-  returns an array of trip objects that the user is 
+  returns an array of trip objects that the user is
   a part of on res.body.trips
 
 GET /api/trips/:stringifiedSearchObject
@@ -47,7 +47,7 @@ GET /api/trips/:stringifiedSearchObject
 ```
 
   Make sure the object is stringified before you send it!
-  
+
   the return will look like:
 ```
 res {
@@ -61,11 +61,11 @@ res {
 
 POST /api/trips
   creates a trip entry in the database. Needs a JSON object
-  attached to req.body.trip with the trip origin, originTime, dest,
+  attached to req.body.newTrip with the trip origin, originTime, dest,
   destTime, weekDays, map. it should look like:
 
 ```
-req.body.trips = {"tripName": "to work", "origin":"map coordinates", "originTime":"08:00 AM", "dest":"map coordinates",
+req.body.newTrip = {"tripName": "to work", "origin":"map coordinates", "originTime":"08:00 AM", "dest":"map coordinates",
  "destTime": "10:00 AM", "weekDays":"mon, tue, thu, sat"}
 ```
 

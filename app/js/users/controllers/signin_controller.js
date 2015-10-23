@@ -1,8 +1,9 @@
 module.exports = function(app) {
   app.controller('SigninController',
-    ['$scope', '$http', '$location', '$base64',
-    function($scope, $http, $location, base64) {
+    ['$scope', '$http', '$window', '$base64', '$cookies',
+    function($scope, $http, $window, base64, $cookies) {
       $scope.user = {};
+      $scope.confirmPassword = false;
 
       $scope.sendToServer = function(user) {
         $http({
@@ -13,8 +14,9 @@ module.exports = function(app) {
           }
         })
           .then(function(res) {
-            //TODO: save token into cookie
-            //TODO: go to app after login
+            $cookies.put('eat', res.data.token);
+            console.log('login');
+            $window.location.assign('/main.html');
           }, function(res) {
             console.log(res);
           });

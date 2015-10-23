@@ -24,7 +24,7 @@
 
 .secondary-banner {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: .9em;
+  font-size: 1.5em;
   position: absolute;
   width: 100%;
   ul{
@@ -38,16 +38,14 @@
   font-size: 2.5em;
   }
   ul{
-    padding-top: 1.5em;
+    padding-top: 1em;
   }
 }
 
 .banner-imgs-2{
   width: auto;
   overflow: hidden;
-  @media only screen and (min-width: 320px) {
-  height: 50px;
- }
+
 
   @media only screen and (min-width: 410px) {
     height: 220px;

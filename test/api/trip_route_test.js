@@ -57,6 +57,21 @@ describe('Trip routes', function() {
     });
   });
 
+  before(function(done) {
+    //populate a trip to search for
+    var trip3 = new Trip();
+    trip3._id = mongoose.Types.ObjectId('333d88ab95136958181e421f');
+    trip3.origin = "Bellevue, WA";
+    trip3.dest = "Seattle, WA";
+    trip3.originTime = 8 * 1000 * 60 * 60;
+    trip3.destTime = 20 * 1000 * 60 * 60;
+    trip3.travelers = [mongoose.Types.ObjectId('560d88ab95136958181e421f')];
+    trip3.save(function(err, data) {
+      if (err) throw err;
+      done();
+    });
+  });
+
   after(function(done) {
     mongoose.connection.db.dropDatabase(function(err) {
       if (err) throw err;
@@ -133,7 +148,7 @@ describe('Trip routes', function() {
     chai.request(url)
       .post('/trips')
       .set('token', this.token)
-      .send({"trip": {"tripName": "test name", "origin": "Renton, WA",
+      .send({"newTrip": {"tripName": "test name", "origin": "Renton, WA",
                     "originTime": "09:00 AM", "dest": "Everett, WA",
                     "destTime": "10:00 AM", "weekDays": "mon",
                     "userEmail": "test email"}}
@@ -142,6 +157,19 @@ describe('Trip routes', function() {
         Trip.findOne({origin: "Renton, WA"}, function(err, doc) {
           expect(err).to.eql(null);
           expect(doc.dest).to.eql("Everett, WA");
+          done();
+        });
+      });
+  });
+
+  it('should be able to delete a trip', function(done) {
+    chai.request(url)
+      .delete('/trips/' + '333d88ab95136958181e421f')
+      .set('token', this.token)
+      .end(function(err, res) {
+        Trip.findOne({_id: '333d88ab95136958181e421f'}, function(err, data) {
+          expect(err).to.eql(null);
+          expect(data).to.eql(null);
           done();
         });
       });

@@ -6,16 +6,39 @@ var handleError = require(__dirname + '/../lib/handle_error');
 var dateParser = require(__dirname + '/../lib/date_parser');
 var findDistance = require(__dirname + '/../app/js/find_distance');
 var eatAuth = require(__dirname + '/../lib/eat_auth');
+var reverseDateParse = require(__dirname + '/../lib/reverse_date_parse');
 
 var tripsRoute = module.exports = exports = express.Router();
 
 tripsRoute.get('/trips', jsonParser, eatAuth, function(req, res) {
-  // If there is only a userId we are finding all the trips the user is a part of.  
-  
+  // If there is only a userId we are finding all the trips the user is a part of.
+
   Trip.find({travelers: req.user._id}, function(err, docs) {
-    
+    var results = [];
+    docs.forEach(function(trip){
+      var output = {origin: trip.origin, dest: trip.dest, weekDays: trip.weekDays, tripName: trip.tripName,
+                    travelers: trip.travelers, map: trip.map, seatsLeft: trip.seatsLeft, _id: trip._id};
+      output.originTime = reverseDateParse(trip.originTime);
+      output.destTime = reverseDateParse(trip.destTime);
+      results.push(output);
+    });
     if (err) handleError(err, res, 500);
-    res.json({trips: docs});
+    res.json({trips: results});
+  });
+});
+
+tripsRoute.get('/allTrips', jsonParser, eatAuth, function(req, res) {
+  Trip.find({}, function(err, docs) {
+    var results = [];
+    docs.forEach(function(trip){
+      var output = {origin: trip.origin, dest: trip.dest, weekDays: trip.weekDays, tripName: trip.tripName,
+                    travelers: trip.travelers, map: trip.map, seatsLeft: trip.seatsLeft, _id: trip._id};
+      output.originTime = reverseDateParse(trip.originTime);
+      output.destTime = reverseDateParse(trip.destTime);
+      results.push(output);
+    });
+    if (err) handleError(err, res, 500);
+    res.json({trips: results});
   });
 });
 
@@ -48,7 +71,16 @@ tripsRoute.get('/trips/:tripSearch', jsonParser, eatAuth, function(req, res) {
               if(distance < 5) {
                 destMatch.push(doc);
                 if (index === array.length -1) {
-                  res.json({trips: destMatch});
+                  var results = [];
+                  destMatch.forEach(function(trip){
+                    var output = {origin: trip.origin, dest: trip.dest, weekDays: trip.weekDays, tripName: trip.tripName,
+                                  travelers: trip.travelers, map: trip.map, seatsLeft: trip.seatsLeft, _id: trip._id};
+                    output.originTime = reverseDateParse(trip.originTime);
+                    output.destTime = reverseDateParse(trip.destTime);
+                    results.push(output);
+                  });
+                  if (err) handleError(err, res, 500);
+                  res.json({trips: results});
                 }
               }
             });
@@ -60,7 +92,7 @@ tripsRoute.get('/trips/:tripSearch', jsonParser, eatAuth, function(req, res) {
 });
 
 tripsRoute.post('/trips', jsonParser, eatAuth, function(req, res) {
-  var tripInfo = req.body.trip;
+  var tripInfo = req.body.newTrip;
   User.findOne({_id: req.user._id}, function(err, user) {
     var trip = new Trip();
     trip.tripName = tripInfo.tripName;
@@ -92,14 +124,14 @@ tripsRoute.put('/trips', jsonParser, eatAuth, function(req, res) {
     }
     User.update({_id: user._id}, {$push: {trips: config.tripId}}, function() {
       Trip.update({_id: config.tripId}, {$push: {travelers: user._id}}, function() {
-        res.send({msg: 'success'});
+        res.send({userId: user._id});
       });
     });
   });
 });
 
-tripsRoute.delete('/trips', jsonParser, eatAuth, function(req, res) {
-  Trip.remove({_id: req.body.tripId}, function(err) {
+tripsRoute.delete('/trips/:id', jsonParser, eatAuth, function(req, res) {
+  Trip.remove({_id: req.params.id}, function(err) {
     if (err) return handleError(err, res, 500);
     res.json({msg: 'success'});
   });

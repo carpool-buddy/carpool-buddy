@@ -7,58 +7,57 @@
     <meta name="description" content="Carpool Finder Web App, find a carpool in Seattle">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-   <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,700' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" href="/styles/main.css">
   </head>
-  <body ng-app="carpoolApp">
+  <body data-ng-app="carpoolApp">
     <header>
       <h1 class="logo">Car Pool Buddy</h1>
       <a href="#login-form" class="btn log_in_top" id="login_button">Log In</a>
     </header>
 
     <main>
- <!--      <div id="login-form">
-      <form>
-        <fieldset>
-          <a class="form-close" id="form-close">X</a>
-          <h2 class="logo">Car Pool Buddy</h2>
+      <div id="login-form" data-ng-controller="SigninController">
+        <form name="loginForm" data-ng-submit="sendToServer(user)">
+          <fieldset>
+            <a class="form-close" id="form-close">X</a>
+            <h2 class="logo">Car Pool Buddy</h2>
 
-          <label for="form-email">Email</label>
-          <input type="email" name="email" id="form-email" spellcheck="false" />
-          <label for="form-company-name">Password</label>
-          <input type="password" name="password" id="login-password" spellcheck="false" />
-          <button type="submit">Submit</login>
-        </fieldset>
-      </form>
-    </div> -->
+            <label for="form-email">Email</label>
+            <input type="email" name="email" id="form-email" spellcheck="false" data-ng-model="user.email" required/>
+            <label for="form-password">Password</label>
+            <input type="password" name="password" id="login-password" spellcheck="false" data-ng-model="user.password" required/>
+            <button type="submit">Submit</login>
+          </fieldset>
+        </form>
+      </div>
 
-    <div id="sign-up-form" data-ng-controller="SignupController">
-      <form name="userForm" data-ng-submit="sendToServer(user)" data-user="user">
-        <fieldset>
-          <a class="form-close" id="signup-form-close">X</a>
-          <h2 class="logo">Car Pool Buddy</h2>
-          <p>Create an Account</p>
+      <div id="sign-up-form" data-ng-controller="SignupController">
+        <form name="userForm" data-ng-submit="sendToServer(user)" data-user="user">
+          <fieldset>
+            <a class="form-close" id="signup-form-close">X</a>
+            <h2 class="logo">Car Pool Buddy</h2>
+            <p>Create an Account</p>
+
+            <label for="form-email">Email</label>
+            <input type="email" name="email" id="form-email" spellcheck="false" data-ng-model="user.email" required/>
+
+            <label for="form-password">Password</label>
+            <input type="password" name="password" id="login-password" spellcheck="false" data-ng-model="user.password" required match="user.confirmation"/>
 
 
-          <label for="form-email">Email</label>
-          <input type="email" name="email" id="form-email" spellcheck="false" data-ng-model="user.email" required/>
+            <label data-ng-if="confirmPassword" for="form-password-confirm">Confirm Password</label>
 
-          <label for="form-password">Password</label>
-          <input type="password" name="password" id="login-password" spellcheck="false" data-ng-model="user.password" required match="user.confirmation"/>
+            <input type="password" name="password" id="login-password" spellcheck="false" data-ng-model="user.confirmation" required match="user.password"/>
+            <p data-ng-if="!passwordMatch(user)">Passwords Do Not Match!</p>
 
+            <button type="submit" data-ng-disabled="disableButton(user)">Submit</login>
+          </fieldset>
+        </form>
+      </div>
 
-          <label data-ng-if="confirmPassword" for="form-password-confirm">Confirm Password</label>
-
-          <input type="password" name="password" id="login-password" spellcheck="false" data-ng-model="user.confirmation" required match="user.password"/>
-          <p data-ng-if="!passwordMatch(user)">Passwords Do Not Match!</p>
-
-          <button type="submit" data-ng-disabled="disableButton(user)">Submit</login>
-        </fieldset>
-      </form>
-    </div>
-
-    <div id="lean_overlay"></div>
+      <div id="lean_overlay"></div>
 
       <div>
         <section class="splash_page">
@@ -107,6 +106,7 @@
       </ul>
     </footer>
 
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/jquery-2.1.4.min.js"><\/script>')</script>
     <script type="text/javascript" src="js/jquery.leanModal.js"></script>
@@ -119,4 +119,3 @@
   -->
   </body>
 </html>
-
