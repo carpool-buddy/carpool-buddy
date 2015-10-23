@@ -106,8 +106,26 @@
 
 
         <section class="main-trips">
-          <h2 id="all">All Trips</h2>
+          <h2 id="all">Your Trips</h2>
           <section class="trip_info" data-ng-repeat="trip in trips">
+            <div class="content">
+              <h3 >Trip Name: {{ trip.tripName }}</h3>
+              <span class="expand_delete" id="trips-1">&#8595</span>
+            </div>
+            <ul id="trips-details-1">
+              <li>
+                <p>Origin: {{ trip.origin }}</p>
+                <p>Destination: {{ trip.dest }}</p>
+                <p>Departure Time: {{ trip.originTime }}</p>
+                <p>Arrival Time: {{ trip.destTime  }}</p>
+              </li>
+            </ul>
+          </section>
+
+
+        <section class="main-trips">
+          <h2 id="all">All Trips</h2>
+          <section class="trip_info" data-ng-repeat="trip in allTrips">
             <div class="content">
               <h3 >Trip Name: {{ trip.tripName }}</h3>
               <span class="expand_delete" id="trips-1">&#8595</span>
@@ -140,7 +158,7 @@
         <h2 id="delete">Search Results</h2>
         <div class="content">
           <ul data-ng-repeat="trip in trips">
-            <p>Trip Name: {{ tripSearchObj.tripName }}</p>
+            <p ng-show="if {{ tripSearchObj.tripName.length }}">Trip Name: {{ tripSearchObj.tripName }}</p>
           </ul>
         </div>
         <div class="home">
