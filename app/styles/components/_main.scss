@@ -127,19 +127,22 @@
   .trip-titles{
     color: $text-light;
   }
+  .content-layout{
+  }
   .content{
     @include flex-container(flex,row,wrap,center,center,center);
+    margin-top: 1em;
     width: 500px;
-    // background-color: $text-light;
+    height: 540px;
     font-size: 1.2em;
     border-radius: 4px;
     overflow: auto;
+    display: relative;
   }
   .display-your-trips{
+    // display: relative;
     height: 500px;
     overflow: auto;
-  }
-  .main-content{
   }
   .main-filters{
   @include flex-container(flex,row,nowrap,space-around,center,center);

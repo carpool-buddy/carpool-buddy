@@ -54,23 +54,19 @@
               </fieldset>
             </form>
           </section> <!-- main-find -->
-          <section class="content">
-            <h2 id="delete" class="trip-titles">Search Results</h2>
-            <section class="trip_info main-basic_style" data-ng-repeat="trip in tripSearchResults">
-              <div class="content">
+
+          <div class="content">
+            <section data-ng-repeat="trip in tripSearchResults">
+              <div>
                 <h3 >Trip Name: {{ trip.tripName }}</h3>
               </div>
-              <ul class="content">
-                <li>
                   <p>Origin: {{ trip.origin }}</p>
                   <p>Destination: {{ trip.dest }}</p>
                   <p>Departure Time: {{ trip.originTime }}</p>
                   <p>Arrival Time: {{ trip.destTime  }}</p>
                 <button data-ng-click="tripSubscription(trip, 'false')">Subscribe</button>
-                </li>
-              </ul>
             </section>
-          </section>
+          </div>
         </section> <!-- filters -->
 
 
