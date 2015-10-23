@@ -96,6 +96,7 @@
                 <p>Departure Time: {{ trip.originTime }}</p>
                 <p>Arrival Time: {{ trip.destTime  }}</p>
               </li>
+
               <button data-ng-click="tripSubscription(trip, 'true')">Unsubscribe</button>
             </ul>
             <p class="button delete" id="find-trip-expand" ng-click="removeTrip(trip)">DELETE</p>
@@ -166,6 +167,7 @@
 
         </section> <!-- main trips -->
       </div>
+        <div id="map"></div>
     <main>
     <footer>
       <p class="footer">&#169 Carpool Buddy LLC</p>
@@ -180,5 +182,9 @@
     <script type="text/javascript" src="js/jquery.leanModal.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="bundle.js"></script>
+
+    <script src='display_route/display_route.js'></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key="+AIzaSyCAHWu2g0jGcVaWPaw_mBevUoBOItmrIL4+"&callback=initMap"
+        async defer></script>
   </body>
 </html>
