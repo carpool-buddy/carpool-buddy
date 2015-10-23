@@ -29,6 +29,11 @@ module.exports = function(app) {
         });
     };
 
+    $scope.refresh = function() {
+      $scope.getMyTrips();
+      $scope.getAllTrips();
+    }
+
     $scope.findTrip = function(tripSearchObj) {
       var search = JSON.stringify(tripSearchObj);
       $http.get('/api/trips/' + search)
@@ -45,6 +50,7 @@ module.exports = function(app) {
         .then(function(res) {
           $scope.newTrip = {};
           $scope.trips.push(res.data);
+          $scope.refresh;
         }, function(res) {
           console.log(res);
         });
@@ -67,6 +73,7 @@ module.exports = function(app) {
     $scope.removeTrip = function(trip) {
       $http.delete('/api/trips/' + trip._id)
         .then(function(res) {
+          $scope.getAllTrips();
           $scope.trips.splice($scope.trips.indexOf(trip), 1);
         }, function(res) {
           console.log(res);
