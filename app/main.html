@@ -30,7 +30,7 @@
         </div>
       </section>
     </header>
-    <main data-ng-controller="TripsController" data-ng-init="getAllTrips()">
+    <main data-ng-controller="TripsController" data-ng-init="refresh()">
       <div class="hidden">
         <section class="third-banner">
           <ul>
@@ -73,14 +73,12 @@
               </fieldset>
             </form>
           </section> <!-- main-find -->
-
           <section class="main-create">
             <h2 id="create" class=" hidden_span">Create A Trip <span class="expand" id="create-trip-expand">+</span></h2>
             <form id="create-trip-form" class="form hidden" data-ng-submit="createTrip(newTrip)">
               <fieldset>
                 <label for="create-newTrip">Name your trip</label>
                 <input type="text" name="create-tripName" id="create-tripName" spellcheck="false" data-ng-model="newTrip.tripName"/>
-
                 <label for="create-origin">Where to Start?</label>
                 <input type="text" name="create-origin" id="create-origin" spellcheck="false" data-ng-model="newTrip.origin"/>
                 <label for="create-destination">Where to Go?</label>
@@ -106,32 +104,34 @@
             </form>
           </section> <!-- main-create -->
         </section> <!-- filters -->
+
+
         <section class="main-trips">
           <h2 id="all">All Trips</h2>
           <section class="trip_info" data-ng-repeat="trip in allTrips">
             <div class="content">
-              <h3 >{{ trip.tripName }}</h3>
+              <h3 >Trip Name: {{ trip.tripName }}</h3>
               <span class="expand_delete" id="trips-1">&#8595</span>
             </div>
             <ul id="trips-details-1">
               <li>
-                <p>{{ trip.origin }}</p>
-                <p>{{ trip.dest }}</p>
-                <p>{{ trip.originTime }}</p>
-                <p>{{ trip.destTime  }}</p>
+                <p>Origin: {{ trip.origin }}</p>
+                <p>Destination: {{ trip.dest }}</p>
+                <p>Departure Time: {{ trip.originTime }}</p>
+                <p>Arrival Time: {{ trip.destTime  }}</p>
               </li>
             </ul>
           </section>
+
+
       <section class="trip_info">
         <h2 id="delete">Delete a Trip</h2>
-
         <div class="content">
           <ul data-ng-repeat="trip in trips">
-            <p>{{ trip.tripName }}</p>
+            <p>Trip Name: {{ trip.tripName }}</p>
             <span class="delete" id="find-trip-expand" ng-click="removeTrip(trip)">-</span>
           </ul>
         </div>
-
         <div class="home">
           <a class="rotate-home"href="#home"><span class="rotate-icon">&#8962</span></a>
         </div>
