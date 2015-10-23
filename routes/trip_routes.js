@@ -17,7 +17,7 @@ tripsRoute.get('/trips', jsonParser, eatAuth, function(req, res) {
     var results = [];
     docs.forEach(function(trip){
       var output = {origin: trip.origin, dest: trip.dest, weekDays: trip.weekDays,
-                    travelers: trip.travelers, map: trip.map, seatsLeft: trip.seatsLeft};
+                    travelers: trip.travelers, map: trip.map, seatsLeft: trip.seatsLeft, _id: trip._id};
       output.originTime = reverseDateParse(trip.originTime);
       output.destTime = reverseDateParse(trip.destTime);
       results.push(output);
@@ -32,7 +32,7 @@ tripsRoute.get('/allTrips', jsonParser, eatAuth, function(req, res) {
     var results = [];
     docs.forEach(function(trip){
       var output = {origin: trip.origin, dest: trip.dest, weekDays: trip.weekDays,
-                    travelers: trip.travelers, map: trip.map, seatsLeft: trip.seatsLeft};
+                    travelers: trip.travelers, map: trip.map, seatsLeft: trip.seatsLeft, _id: trip._id};
       output.originTime = reverseDateParse(trip.originTime);
       output.destTime = reverseDateParse(trip.destTime);
       results.push(output);
