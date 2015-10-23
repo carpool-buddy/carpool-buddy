@@ -35,5 +35,3 @@ public
 
 # Dev Environment
 .env
-
-test/client/test_bundle.js

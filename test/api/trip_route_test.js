@@ -148,7 +148,7 @@ describe('Trip routes', function() {
     chai.request(url)
       .post('/trips')
       .set('token', this.token)
-      .send({"trip": {"tripName": "test name", "origin": "Renton, WA",
+      .send({"newTrip": {"tripName": "test name", "origin": "Renton, WA",
                     "originTime": "09:00 AM", "dest": "Everett, WA",
                     "destTime": "10:00 AM", "weekDays": "mon",
                     "userEmail": "test email"}}

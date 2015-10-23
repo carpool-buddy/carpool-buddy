@@ -39,7 +39,8 @@ module.exports = function(app) {
       var search = JSON.stringify(tripSearchObj);
       $http.get('/api/trips/' + search)
         .then(function(res) {
-          $scope.tripSearchResults = res.data;
+          $scope.tripSearchResults = res.data.trips;
+          console.log(res.data.trips);
         }, function(res) {
           console.log(res);
         });

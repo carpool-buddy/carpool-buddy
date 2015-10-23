@@ -56,18 +56,6 @@
                 <input type="text" name="find-time" id="find-time" spellcheck="false" data-ng-model="tripSearchObj.originTime" placeholder="HH:MM AM/PM"/>
                 <label for="find-time">What Time to Arrive?</label>
                 <input type="text" name="find-time" id="find-time" spellcheck="false" data-ng-model="tripSearchObj.destTime" placeholder="HH:MM AM/PM"/>
-          <!--  <label for="find-days" >What Days to Go?</label>
-                <fieldset class="form-left">
-                <label><input type="checkbox" value="sun"/>Sunday</label>
-                <label><input type="checkbox" value="tue" checked="true"/>Tuesday</label>
-                <label><input type="checkbox" value="thu" checked="true"/>Thursday</label>
-                <label><input type="checkbox" value="sat"/>Saturday</label>
-              </fieldset>
-              <fieldset class="form-right">
-                <label><input type="checkbox" value="mon" checked="true"/>Monday</label>
-                <label><input type="checkbox" value="wed" checked="true"/>Wednesday</label>
-                <label><input type="checkbox" value="fri" checked="true"/>Friday</label>
-              </fieldset> -->
                 <button type="submit">Submit</login>
               </fieldset>
             </form>
@@ -86,18 +74,6 @@
                 <input type="text" name="create-time" id="create-time" spellcheck="false" data-ng-model="newTrip.originTime" placeholder="HH:MM AM/PM"/>
                 <label for="create-arrive-time">What Time to Get There?</label>
                 <input type="text" name="create-time" id="create-arrive-time" spellcheck="false" data-ng-model="newTrip.destTime" placeholder="HH:MM AM/PM"/>
- <!--           <label for="create-days">What Days to Go?</label>
-               <fieldset class="form-left">
-                <label><input type="checkbox" value="sun"/>Sunday</label>
-                <label><input type="checkbox" value="tue" checked="true"/>Tuesday</label>
-                <label><input type="checkbox" value="thu" checked="true"/>Thursday</label>
-                <label><input type="checkbox" value="sat"/>Saturday</label>
-              </fieldset>
-              <fieldset class="form-right">
-                <label><input type="checkbox" value="mon" checked="true"/>Monday</label>
-                <label><input type="checkbox" value="wed" checked="true"/>Wednesday</label>
-                <label><input type="checkbox" value="fri" checked="true"/>Friday</label>
-              </fieldset> -->
                 <button type="submit">Submit</login>
               </fieldset>
             </form>
@@ -108,6 +84,7 @@
         <section class="main-trips">
           <h2 id="all">Your Trips</h2>
           <section class="trip_info" data-ng-repeat="trip in trips">
+
             <div class="content">
               <h3 >Trip Name: {{ trip.tripName }}</h3>
               <span class="expand_delete" id="trips-1">&#8595</span>
