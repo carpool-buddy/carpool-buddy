@@ -24,7 +24,7 @@
   font-size: 1.25rem;
 }
 .sub-btn{
-  background-color: $primary-color-light;
+  background-color: #598aa0;
   padding: .2em;
   text-align: center;
   width: 120px;
@@ -138,15 +138,10 @@
 
 }
 
-// desktop layout
-@media only screen and (min-width: 650px) {
-
-  .trip-titles{
-    color: $text-light;
-  }
-  .content-layout{
-  }
   .content{
+    background-color: $text-light;
+    width: 100%;
+    @media only screen and (min-width: 650px) {
     margin-top: 1em;
     display: inline;
     width: 500px;
@@ -155,6 +150,17 @@
     border-radius: 4px;
     overflow: auto;
     display: relative;
+    background-color: transparent;
+
+    }
+  }
+// desktop layout
+@media only screen and (min-width: 650px) {
+
+  .trip-titles{
+    color: $text-light;
+  }
+  .content-layout{
   }
   .display-your-trips{
     font-size: 1.5em;
