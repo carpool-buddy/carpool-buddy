@@ -35,12 +35,10 @@ module.exports = function(app) {
     };
 
     $scope.findTrip = function(tripSearchObj) {
-      console.log(tripSearchObj);
       var search = JSON.stringify(tripSearchObj);
       $http.get('/api/trips/' + search)
         .then(function(res) {
           $scope.tripSearchResults = res.data.trips;
-          console.log(res.data.trips);
         }, function(res) {
           console.log(res);
         });
@@ -57,7 +55,7 @@ module.exports = function(app) {
         });
     };
 
-    $scope.tripSubsciption = function(trip, remove) {
+    $scope.tripSubscription = function(trip, remove) {
       var tripConfig = {"remove": remove, "tripId": trip._id};
       $http.put('/api/trips', {tripConfig: tripConfig})
         .then(function(res) {
