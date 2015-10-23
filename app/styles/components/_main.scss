@@ -14,6 +14,23 @@
   background-color: $logo-color;
 }
 
+.delete-trip{
+  cursor: pointer;
+  background-color: $logo-color;
+  padding: .2em;
+  text-align: center;
+  width: 90px;
+  border-radius: 4px;
+  font-size: 1.25rem;
+}
+.unsub-trip{
+  background-color: $primary-color-light;
+  padding: .2em;
+  text-align: center;
+  width: 120px;
+  border-radius: 4px;
+  font-size: 1.25rem;
+}
 
 // .expand {
 //   @extend .expand_delete;
@@ -130,7 +147,6 @@
   .content-layout{
   }
   .content{
-    // @include flex-container(flex,row,wrap,center,center,center);
     margin-top: 1em;
     display: inline;
     width: 500px;
@@ -141,6 +157,7 @@
     display: relative;
   }
   .display-your-trips{
+    font-size: 1.5em;
     height: 500px;
     overflow: auto;
   }
@@ -169,6 +186,7 @@
     @include flex-container(flex,column,nowrap,flex-start,center,center);
   }
   .display-all-trips{
+    border-bottom: 1px solid $primary-color-light;
     @include flex-container(flex,row,wrap,flex-start,center,center);
 
   }
