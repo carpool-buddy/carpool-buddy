@@ -21,10 +21,9 @@
               <input type="checkbox" id="show-menu">
             <ul>
               <li><a href data-ng-click="logOut()">Sign Out</a></li>
-              <li><a href="#all">All Trips</a></li>
+              <li><a href="#all">Your Trips</a></li>
               <li><a href="#find">Find Trips</a></li>
               <li><a href="#create">Create Trips</a></li>
-              <li><a href="#delete">Delete Trips</a></li>
             </ul>
           </nav>
         </div>
@@ -32,12 +31,7 @@
     </header>
     <main data-ng-controller="TripsController" data-ng-init="refresh()">
       <div class="hidden">
-        <section class="third-banner">
-          <ul>
-            <li>Find A Trip</li>
-            <li>Create A Trip</li>
-          </ul>
-        </section>
+
         <div class="banner-imgs-3">
           <img src="/imgs/leaves.jpg" width="1400">
         </div>
@@ -45,7 +39,7 @@
       <div class="main-content">
         <section class="main-filters">
           <section class="main-find">
-            <h2 id="find" class=" hidden_span">Find a Trip <span class="expand" id="find-trip-expand">+</span></h2>
+            <h2 id="find">Find a Trip <span class="expand hidden_span" id="find-trip-expand">+</span></h2>
             <form id="find-trip-form" class="form hidden" data-ng-submit="findTrip(tripSearchObj)">
               <fieldset>
                 <label for="find-origin">Where to Start?</label>
@@ -60,8 +54,52 @@
               </fieldset>
             </form>
           </section> <!-- main-find -->
+          <section class="content">
+            <h2 id="delete">Search Results</h2>
+            <section class="trip_info" data-ng-repeat="trip in tripSearchResults">
+              <div class="content">
+                <h3 >Trip Name: {{ trip.tripName }}</h3>
+              </div>
+              <ul id="trips-details-1" class="content">
+                <li>
+                  <p>Origin: {{ trip.origin }}</p>
+                  <p>Destination: {{ trip.dest }}</p>
+                  <p>Departure Time: {{ trip.originTime }}</p>
+                  <p>Arrival Time: {{ trip.destTime  }}</p>
+                <button data-ng-click="tripSubscription(trip, 'false')">Subscribe</button>
+                </li>
+              </ul>
+            </section>
+          </section>
+        </section> <!-- filters -->
+
+
+        <div class="banner-imgs-4">
+          <img src="/imgs/blur-car.jpg" width="1400">
+        </div>
+
+        <section class="main-filters-create">
+          <section class="display-your-trips">
+            <h2 id="all">Your Trips</h2>
+            <section class="trip_info" data-ng-repeat="trip in trips">
+
+              <div class="content">
+                <h3 >Trip Name: {{ trip.tripName }}</h3>
+              </div>
+              <ul id="trips-details-1">
+                <li>
+                  <p>Origin: {{ trip.origin }}</p>
+                  <p>Destination: {{ trip.dest }}</p>
+                  <p>Departure Time: {{ trip.originTime }}</p>
+                  <p>Arrival Time: {{ trip.destTime  }}</p>
+                </li>
+                <button data-ng-click="tripSubscription(trip, 'true')">Unsubscribe</button>
+              </ul>
+              <p class="button delete" id="find-trip-expand" ng-click="removeTrip(trip)">DELETE</p>
+            </section>
+          </section>
           <section class="main-create">
-            <h2 id="create" class=" hidden_span">Create A Trip <span class="expand" id="create-trip-expand">+</span></h2>
+            <h2 id="create">Create A Trip <span class="expand hidden_span" id="create-trip-expand">+</span></h2>
             <form id="create-trip-form" class="form hidden" data-ng-submit="createTrip(newTrip)">
               <fieldset>
                 <label for="create-newTrip">Name your trip</label>
@@ -78,27 +116,10 @@
               </fieldset>
             </form>
           </section> <!-- main-create -->
-        </section> <!-- filters -->
-
+        </section>
 
         <section class="main-trips">
-          <h2 id="all">Your Trips</h2>
-          <section class="trip_info" data-ng-repeat="trip in trips">
 
-            <div class="content">
-              <h3 >Trip Name: {{ trip.tripName }}</h3>
-            </div>
-            <ul id="trips-details-1">
-              <li>
-                <p>Origin: {{ trip.origin }}</p>
-                <p>Destination: {{ trip.dest }}</p>
-                <p>Departure Time: {{ trip.originTime }}</p>
-                <p>Arrival Time: {{ trip.destTime  }}</p>
-              </li>
-              <button data-ng-click="tripSubscription(trip, 'true')">Unsubscribe</button>
-            </ul>
-            <p class="button delete" id="find-trip-expand" ng-click="removeTrip(trip)">DELETE</p>
-          </section>
 
 
         <section class="main-trips">
@@ -132,23 +153,6 @@
       </section> -->
 
       <section class="trip_info">
-
-
-        <h2 id="delete">Search Results</h2>
-         <section class="trip_info" data-ng-repeat="trip in tripSearchResults">
-            <div class="content">
-              <h3 >Trip Name: {{ trip.tripName }}</h3>
-            </div>
-            <ul id="trips-details-1">
-              <li>
-                <p>Origin: {{ trip.origin }}</p>
-                <p>Destination: {{ trip.dest }}</p>
-                <p>Departure Time: {{ trip.originTime }}</p>
-                <p>Arrival Time: {{ trip.destTime  }}</p>
-              </li>
-              <button data-ng-click="tripSubscription(trip, 'false')">Subscribe</button>
-            </ul>
-          </section>
 <!--
 
         <div class="content">
