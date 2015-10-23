@@ -6,6 +6,7 @@ var handleError = require(__dirname + '/../lib/handle_error');
 var dateParser = require(__dirname + '/../lib/date_parser');
 var findDistance = require(__dirname + '/../app/js/find_distance');
 var eatAuth = require(__dirname + '/../lib/eat_auth');
+var reverseDateParse = require(__dirname + '/../lib/reverse_date_parse');
 
 var tripsRoute = module.exports = exports = express.Router();
 
@@ -13,16 +14,31 @@ tripsRoute.get('/trips', jsonParser, eatAuth, function(req, res) {
   // If there is only a userId we are finding all the trips the user is a part of.
 
   Trip.find({travelers: req.user._id}, function(err, docs) {
-
+    var results = [];
+    docs.forEach(function(trip){
+      var output = {origin: trip.origin, dest: trip.dest, weekDays: trip.weekDays,
+                    travelers: trip.travelers, map: trip.map, seatsLeft: trip.seatsLeft};
+      output.originTime = reverseDateParse(trip.originTime);
+      output.destTime = reverseDateParse(trip.destTime);
+      results.push(output);
+    });
     if (err) handleError(err, res, 500);
-    res.json({trips: docs});
+    res.json({trips: results});
   });
 });
 
 tripsRoute.get('/allTrips', jsonParser, eatAuth, function(req, res) {
   Trip.find({}, function(err, docs) {
+    var results = [];
+    docs.forEach(function(trip){
+      var output = {origin: trip.origin, dest: trip.dest, weekDays: trip.weekDays,
+                    travelers: trip.travelers, map: trip.map, seatsLeft: trip.seatsLeft};
+      output.originTime = reverseDateParse(trip.originTime);
+      output.destTime = reverseDateParse(trip.destTime);
+      results.push(output);
+    });
     if (err) handleError(err, res, 500);
-    res.json({trips: docs});
+    res.json({trips: results});
   });
 });
 
