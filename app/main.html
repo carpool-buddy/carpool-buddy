@@ -21,9 +21,10 @@
               <input type="checkbox" id="show-menu">
             <ul>
               <li><a href data-ng-click="logOut()">Sign Out</a></li>
-              <li><a href="#all">Your Trips</a></li>
               <li><a href="#find">Find Trips</a></li>
               <li><a href="#create">Create Trips</a></li>
+              <li><a href="#your">Your Trips</a></li>
+              <li><a href="#all">All Trips</a></li>
             </ul>
           </nav>
         </div>
@@ -31,7 +32,6 @@
     </header>
     <main data-ng-controller="TripsController" data-ng-init="refresh()">
       <div class="hidden">
-
         <div class="banner-imgs-3">
           <img src="/imgs/leaves.jpg" width="1400">
         </div>
@@ -41,7 +41,7 @@
           <section class="main-find">
             <h2 id="find">Find a Trip <span class="expand hidden_span" id="find-trip-expand">+</span></h2>
             <form id="find-trip-form" class="form hidden" data-ng-submit="findTrip(tripSearchObj)">
-              <fieldset>
+              <fieldset class="main-basic_style">
                 <label for="find-origin">Where to Start?</label>
                 <input type="text" name="find-origin" id="find-origin" spellcheck="false" data-ng-model="tripSearchObj.origin" />
                 <label for="find-destination">Where to Go?</label>
@@ -55,12 +55,12 @@
             </form>
           </section> <!-- main-find -->
           <section class="content">
-            <h2 id="delete">Search Results</h2>
-            <section class="trip_info" data-ng-repeat="trip in tripSearchResults">
+            <h2 id="delete" class="trip-titles">Search Results</h2>
+            <section class="trip_info main-basic_style" data-ng-repeat="trip in tripSearchResults">
               <div class="content">
                 <h3 >Trip Name: {{ trip.tripName }}</h3>
               </div>
-              <ul id="trips-details-1" class="content">
+              <ul class="content">
                 <li>
                   <p>Origin: {{ trip.origin }}</p>
                   <p>Destination: {{ trip.dest }}</p>
@@ -74,13 +74,15 @@
         </section> <!-- filters -->
 
 
-        <div class="banner-imgs-4">
-          <img src="/imgs/blur-car.jpg" width="1400">
+        <div class="hidden">
+          <div class="banner-imgs-4">
+            <img id="create" src="/imgs/blur-car.jpg" width="1400">
+          </div>
         </div>
 
         <section class="main-filters-create">
           <section class="display-your-trips">
-            <h2 id="all">Your Trips</h2>
+            <h2 id="your">Your Trips</h2>
             <section class="trip_info" data-ng-repeat="trip in trips">
 
               <div class="content">
@@ -99,7 +101,7 @@
             </section>
           </section>
           <section class="main-create">
-            <h2 id="create">Create A Trip <span class="expand hidden_span" id="create-trip-expand">+</span></h2>
+            <h2>Create A Trip <span class="expand hidden_span" id="create-trip-expand">+</span></h2>
             <form id="create-trip-form" class="form hidden" data-ng-submit="createTrip(newTrip)">
               <fieldset>
                 <label for="create-newTrip">Name your trip</label>
