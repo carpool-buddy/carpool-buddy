@@ -50,7 +50,7 @@
                 <input type="text" name="find-time" id="find-time" spellcheck="false" data-ng-model="tripSearchObj.originTime" placeholder="HH:MM AM/PM"/>
                 <label for="find-time">What Time to Arrive?</label>
                 <input type="text" name="find-time" id="find-time" spellcheck="false" data-ng-model="tripSearchObj.destTime" placeholder="HH:MM AM/PM"/>
-                <button type="submit">Submit</login>
+                <button type="submit">Submit</button>
               </fieldset>
             </form>
           </section> <!-- main-find -->
@@ -64,7 +64,7 @@
                   <p>Destination: {{ trip.dest }}</p>
                   <p>Departure Time: {{ trip.originTime }}</p>
                   <p>Arrival Time: {{ trip.destTime  }}</p>
-                <button data-ng-click="tripSubscription(trip, 'false')">Subscribe</button>
+                <p class="sub-btn" data-ng-click="tripSubscription(trip, 'false')">Subscribe</p>
             </section>
           </div>
         </section> <!-- filters -->
@@ -88,7 +88,7 @@
                   <p>Destination: {{ trip.dest }}</p>
                   <p>Departure Time: {{ trip.originTime }}</p>
                   <p>Arrival Time: {{ trip.destTime  }}</p>
-                <p class="unsub-trip" data-ng-click="tripSubscription(trip, 'true')">Unsubscribe</p>
+                <p class="sub-btn" data-ng-click="tripSubscription(trip, 'true')">Unsubscribe</p>
               <p class="delete-trip" id="find-trip-expand" ng-click="removeTrip(trip)">DELETE</p>
             </section>
           </section>

@@ -23,7 +23,7 @@
   border-radius: 4px;
   font-size: 1.25rem;
 }
-.unsub-trip{
+.sub-btn{
   background-color: $primary-color-light;
   padding: .2em;
   text-align: center;
@@ -187,7 +187,7 @@
   }
   .display-all-trips{
     border-bottom: 1px solid $primary-color-light;
-    @include flex-container(flex,row,wrap,flex-start,center,center);
+    @include flex-container(flex,row,wrap,center,center,center);
 
   }
 }
