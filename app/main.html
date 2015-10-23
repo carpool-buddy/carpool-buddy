@@ -81,19 +81,15 @@
             <h2 id="your">Your Trips</h2>
             <section class="trip_info" data-ng-repeat="trip in trips">
 
-              <div class="content">
+              <div>
                 <h3 >Trip Name: {{ trip.tripName }}</h3>
               </div>
-              <ul>
-                <li>
                   <p>Origin: {{ trip.origin }}</p>
                   <p>Destination: {{ trip.dest }}</p>
                   <p>Departure Time: {{ trip.originTime }}</p>
                   <p>Arrival Time: {{ trip.destTime  }}</p>
-                </li>
                 <button data-ng-click="tripSubscription(trip, 'true')">Unsubscribe</button>
               <p class="button delete" id="find-trip-expand" ng-click="removeTrip(trip)">DELETE</p>
-              </ul>
             </section>
           </section>
           <section class="main-create">
