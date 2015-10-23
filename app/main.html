@@ -91,6 +91,7 @@
                   <p>Departure Time: {{ trip.originTime }}</p>
                   <p>Arrival Time: {{ trip.destTime  }}</p>
                   <p>Travelers: {{ trip.emails }}</p>
+                  <div id="map"></div>
                 <button class="sub-btn" data-ng-click="tripSubscription(trip, 'true')">Unsubscribe</button>
               <p class="delete-trip" id="find-trip-expand" ng-click="removeTrip(trip)">DELETE</p>
               </ul>
@@ -116,30 +117,6 @@
           </section> <!-- main-create -->
         </section>
 
-        <section class="main-trips">
-<!-- <<<<<<< HEAD
-          <h2 id="all">Your Trips</h2>
-
-            <div class="content">
-              <h3 >Trip Name: {{ trip.tripName }}</h3>
-              <span class="expand_delete" id="trips-1">&#8595</span>
-            </div>
-            <ul id="trips-details-1">
-              <li>
-                <p>Origin: <span id="tripOrigin">{{ trip.origin }}</span></p>
-                <p>Destination: <span id="tripDest">{{ trip.dest }}</span></p>
-                <p>Departure Time: {{ trip.originTime }}</p>
-                <p>Arrival Time: {{ trip.destTime  }}</p>
-                <p>{{trip._id}}</p>
-              </li>
-              <div id="map"></div>
-              <button data-ng-click="tripSubscription(trip, 'true')">Unsubscribe</button>
-            </ul>
-            <p class="button delete" id="find-trip-expand" ng-click="removeTrip(trip)">DELETE</p>
-          </section>
-=======
->>>>>>> dd12bd7b5babeb8b57c940a1beccf413a5386981
- -->
 
         <section class="main-trips">
           <h2 id="all"><a href="#" id="trips-1">All Trips</a></h2>
