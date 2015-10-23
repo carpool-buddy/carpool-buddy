@@ -16,8 +16,8 @@ tripsRoute.get('/trips', jsonParser, eatAuth, function(req, res) {
   Trip.find({travelers: req.user._id}, function(err, docs) {
     var results = [];
     docs.forEach(function(trip){
-      var output = {origin: trip.origin, dest: trip.dest, weekDays: trip.weekDays,
-                    travelers: trip.travelers, map: trip.map, seatsLeft: trip.seatsLeft};
+      var output = {origin: trip.origin, dest: trip.dest, weekDays: trip.weekDays, tripName: trip.tripName,
+                    travelers: trip.travelers, map: trip.map, seatsLeft: trip.seatsLeft, _id: trip._id};
       output.originTime = reverseDateParse(trip.originTime);
       output.destTime = reverseDateParse(trip.destTime);
       results.push(output);
@@ -31,8 +31,8 @@ tripsRoute.get('/allTrips', jsonParser, eatAuth, function(req, res) {
   Trip.find({}, function(err, docs) {
     var results = [];
     docs.forEach(function(trip){
-      var output = {origin: trip.origin, dest: trip.dest, weekDays: trip.weekDays,
-                    travelers: trip.travelers, map: trip.map, seatsLeft: trip.seatsLeft};
+      var output = {origin: trip.origin, dest: trip.dest, weekDays: trip.weekDays, tripName: trip.tripName,
+                    travelers: trip.travelers, map: trip.map, seatsLeft: trip.seatsLeft, _id: trip._id};
       output.originTime = reverseDateParse(trip.originTime);
       output.destTime = reverseDateParse(trip.destTime);
       results.push(output);
@@ -71,7 +71,16 @@ tripsRoute.get('/trips/:tripSearch', jsonParser, eatAuth, function(req, res) {
               if(distance < 5) {
                 destMatch.push(doc);
                 if (index === array.length -1) {
-                  res.json({trips: destMatch});
+                  var results = [];
+                  destMatch.forEach(function(trip){
+                    var output = {origin: trip.origin, dest: trip.dest, weekDays: trip.weekDays, tripName: trip.tripName,
+                                  travelers: trip.travelers, map: trip.map, seatsLeft: trip.seatsLeft, _id: trip._id};
+                    output.originTime = reverseDateParse(trip.originTime);
+                    output.destTime = reverseDateParse(trip.destTime);
+                    results.push(output);
+                  });
+                  if (err) handleError(err, res, 500);
+                  res.json({trips: results});
                 }
               }
             });
