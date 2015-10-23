@@ -32,7 +32,7 @@ module.exports = function(app) {
     $scope.refresh = function() {
       $scope.getMyTrips();
       $scope.getAllTrips();
-    }
+    };
 
     $scope.findTrip = function(tripSearchObj) {
       console.log(tripSearchObj);
