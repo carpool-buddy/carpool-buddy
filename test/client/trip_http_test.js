@@ -33,12 +33,12 @@ describe('trips controller', function() {
       $httpBackend.verifyNoOutstandingRequest();
     });
 
-    // it('should be able to make a get request to get users trips', function() {
-    //   $httpBackend.expectGET('/api/trips').respond(200, {trips: [{"origin": "WA"}]});
-    //   $scope.getMyTrips();
-    //   $httpBackend.flush();
-    //   expect($scope.trips[0].origin).toBe('WA');
-    // });
+    it('should be able to make a get request to get users trips', function() {
+      $httpBackend.expectGET('/api/trips').respond(200, {trips: [{"origin": "WA"}]});
+      $scope.getMyTrips();
+      $httpBackend.flush();
+      expect($scope.trips[0].origin).toBe('WA');
+    });
 
     it('should be able to make a get request to search for new trips', function() {
       var search = {"origin": "map coordinates", "originTime": "08:00 AM",
